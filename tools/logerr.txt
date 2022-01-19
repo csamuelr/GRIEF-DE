@@ -1,0 +1,1842 @@
+g++ match_all.cpp  -ggdb  `pkg-config opencv --cflags` grief/grief.cpp -I   -Llib -Wl,-g `pkg-config opencv --libs` -o match_all 
+g++ match_all.cpp  -ggdb  `pkg-config opencv --cflags` grief/grief.cpp -I   -Llib -Wl,-g `pkg-config opencv --libs` -o match_all 
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::SIFT; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:320:72:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::StarDetector>::operator=(const cv::Ptr<cv::SIFT>&)’
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:309:19: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                   ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::SIFT>’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::SIFT>&; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::StarDetector>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::StarDetector>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::SIFT]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::SIFT; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:320:72:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::StarDetector>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::SIFT; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:320:72:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::SIFT>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::SIFT>’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::SIFT>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::StarDetector]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::SIFT>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::xfeatures2d::SURF; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:321:59:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::StarDetector>::operator=(const cv::Ptr<cv::xfeatures2d::SURF>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:309:19: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                   ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::xfeatures2d::SURF>’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::xfeatures2d::SURF>&; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::StarDetector>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::StarDetector>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::xfeatures2d::SURF]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::xfeatures2d::SURF; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:321:59:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::StarDetector>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::xfeatures2d::SURF; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:321:59:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::xfeatures2d::SURF>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::xfeatures2d::SURF>’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::xfeatures2d::SURF>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::StarDetector]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::xfeatures2d::SURF>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::BRISK; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:323:61:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::StarDetector>::operator=(const cv::Ptr<cv::BRISK>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:103:11: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  103 |     class shared_ptr : public __shared_ptr<_Tp>
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::BRISK>’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::BRISK>&; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::StarDetector>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::StarDetector>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::BRISK]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::BRISK; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:323:61:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::StarDetector>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::BRISK; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:323:61:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::BRISK>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::BRISK>’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::BRISK>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::StarDetector]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::BRISK>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::ORB; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:324:102:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::StarDetector>::operator=(const cv::Ptr<cv::ORB>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:103:11: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  103 |     class shared_ptr : public __shared_ptr<_Tp>
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::ORB>’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::ORB>&; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::StarDetector>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::StarDetector>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::ORB]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::ORB; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:324:102:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::StarDetector>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::ORB; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:324:102:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::ORB>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::ORB>’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::ORB>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::StarDetector]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::ORB>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::FastFeatureDetector; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:325:77:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::StarDetector>::operator=(const cv::Ptr<cv::FastFeatureDetector>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:103:11: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  103 |     class shared_ptr : public __shared_ptr<_Tp>
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::FastFeatureDetector>’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::FastFeatureDetector>&; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::StarDetector>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::StarDetector>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::FastFeatureDetector]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::FastFeatureDetector; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:325:77:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::StarDetector>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::FastFeatureDetector; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:325:77:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::FastFeatureDetector>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::FastFeatureDetector>’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::FastFeatureDetector>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::StarDetector]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::FastFeatureDetector>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::MSER; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:328:57:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::StarDetector>::operator=(const cv::Ptr<cv::MSER>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:103:11: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  103 |     class shared_ptr : public __shared_ptr<_Tp>
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::MSER>’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::MSER>&; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::StarDetector>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::StarDetector>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::MSER]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::MSER; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:328:57:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::StarDetector>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::MSER; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:328:57:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::MSER>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::MSER>’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::MSER>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::StarDetector]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::MSER>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::GFTTDetector; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:329:88:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::StarDetector>::operator=(const cv::Ptr<cv::GFTTDetector>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:103:11: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  103 |     class shared_ptr : public __shared_ptr<_Tp>
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::GFTTDetector>’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::GFTTDetector>&; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::StarDetector>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::StarDetector>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::GFTTDetector]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::GFTTDetector; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:329:88:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::StarDetector>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::GFTTDetector; T = cv::xfeatures2d::StarDetector]’:
+match_all.cpp:329:88:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::GFTTDetector>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::GFTTDetector>’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::StarDetector]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::GFTTDetector>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::StarDetector]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::GFTTDetector>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::SIFT; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:341:86:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=(const cv::Ptr<cv::SIFT>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:309:19: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                   ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::SIFT>’ to ‘const std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::SIFT>&; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::SIFT]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::SIFT; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:341:86:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::SIFT; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:341:86:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::SIFT>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::SIFT>’ to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::SIFT>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::SIFT>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::xfeatures2d::SURF; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:342:73:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=(const cv::Ptr<cv::xfeatures2d::SURF>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:309:19: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                   ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::xfeatures2d::SURF>’ to ‘const std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::xfeatures2d::SURF>&; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::xfeatures2d::SURF]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::xfeatures2d::SURF; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:342:73:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::xfeatures2d::SURF; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:342:73:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::xfeatures2d::SURF>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::xfeatures2d::SURF>’ to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::xfeatures2d::SURF>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::xfeatures2d::SURF>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::BRISK; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:343:77:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=(const cv::Ptr<cv::BRISK>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:309:19: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                   ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::BRISK>’ to ‘const std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::BRISK>&; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::BRISK]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::BRISK; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:343:77:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::BRISK; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:343:77:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::BRISK>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::BRISK>’ to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::BRISK>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::BRISK>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::ORB; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:346:118:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: error: no matching function for call to ‘cv::Ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=(const cv::Ptr<cv::ORB>&)’
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:103:11: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  103 |     class shared_ptr : public __shared_ptr<_Tp>
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:309:29: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::ORB>’ to ‘const std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&’
+  309 |       shared_ptr& operator=(const shared_ptr&) noexcept = default;
+      |                             ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<const std::shared_ptr<_Yp>&> std::shared_ptr<_Tp>::operator=(const std::shared_ptr<_Yp>&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  313 |  operator=(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:313:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class _Arg> using _Assignable = typename std::enable_if<std::is_assignable<std::__shared_ptr<_Tp>&, _Arg>::value, std::shared_ptr<_Tp>&>::type [with _Arg = const std::shared_ptr<cv::ORB>&; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’:
+/usr/include/c++/9/bits/shared_ptr.h:313:2:   required by substitution of ‘template<class _Yp> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::_Assignable<const std::shared_ptr<_Tp>&> std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::operator=<_Yp>(const std::shared_ptr<_Tp>&) [with _Yp = cv::ORB]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97:   required from ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::ORB; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:346:118:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:111:8: error: no type named ‘type’ in ‘struct std::enable_if<false, std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&>’
+  111 |  using _Assignable = typename enable_if<
+      |        ^~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>& cv::Ptr<T>::operator=(const cv::Ptr<Y>&) [with Y = cv::ORB; T = cv::xfeatures2d::BriefDescriptorExtractor]’:
+match_all.cpp:346:118:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::auto_ptr<_Up> > std::shared_ptr<_Tp>::operator=(std::auto_ptr<_Up>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  324 |  operator=(auto_ptr<_Yp>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:324:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::auto_ptr<_Up>’ and ‘const cv::Ptr<cv::ORB>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:333:7: note: candidate: ‘std::shared_ptr<_Tp>& std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:333:30: note:   no known conversion for argument 1 from ‘const cv::Ptr<cv::ORB>’ to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&&’
+  333 |       operator=(shared_ptr&& __r) noexcept
+      |                 ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::_Assignable<std::shared_ptr<_Yp> > std::shared_ptr<_Tp>::operator=(std::shared_ptr<_Yp>&&) [with _Yp = _Yp; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  341 |  operator=(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:341:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::shared_ptr<_Tp>’ and ‘const cv::Ptr<cv::ORB>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note: candidate: ‘template<class _Yp, class _Del> std::shared_ptr<_Tp>::_Assignable<std::unique_ptr<_Up, _Ep> > std::shared_ptr<_Tp>::operator=(std::unique_ptr<_Up, _Ep>&&) [with _Yp = _Yp; _Del = _Del; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  349 |  operator=(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:349:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:122:97: note:   types ‘std::unique_ptr<_Tp, _Dp>’ and ‘const cv::Ptr<cv::ORB>’ have incompatible cv-qualifiers
+  122 |     template<typename Y> inline Ptr& operator=(const Ptr<Y>& o) { std::shared_ptr<T>::operator =(o); return *this; }
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::FakeFeatureDetector; T = cv::xfeatures2d::StarDetector; std::false_type = std::integral_constant<bool, false>]’:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::FakeFeatureDetector; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:330:67:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: error: no matching function for call to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>::shared_ptr(cv::FakeFeatureDetector*&)’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:367:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = cv::xfeatures2d::StarDetector]’
+  367 |       shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t)
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:367:7: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/9/bits/shared_ptr.h:358:2: note: candidate: ‘template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...)’
+  358 |  shared_ptr(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:358:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::_Sp_alloc_shared_tag<_Tp>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:307:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = cv::xfeatures2d::StarDetector; std::nullptr_t = std::nullptr_t]’
+  307 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:307:28: note:   no known conversion for argument 1 from ‘cv::FakeFeatureDetector*’ to ‘std::nullptr_t’
+  307 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                            ^~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:299:2: note: candidate: ‘template<class _Yp, class _Del, std::shared_ptr<cv::xfeatures2d::StarDetector>::_Constructible<std::unique_ptr<_Tp, _Dp>, std::__sp_array_delete>* <anonymous> > std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&)’
+  299 |  shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:299:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::unique_ptr<_Tp, _Dp>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:290:2: note: candidate: ‘template<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&)’
+  290 |  shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:290:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::unique_ptr<_Tp, _Dp>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:282:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&)’
+  282 |  shared_ptr(auto_ptr<_Yp>&& __r);
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:282:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::auto_ptr<_Up>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:275:11: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&)’
+  275 |  explicit shared_ptr(const weak_ptr<_Yp>& __r)
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:275:11: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::weak_ptr<_Tp>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:263:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&)’
+  263 |  shared_ptr(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:263:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::shared_ptr<_Tp>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:254:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  254 |       shared_ptr(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:254:31: note:   no known conversion for argument 1 from ‘cv::FakeFeatureDetector*’ to ‘std::shared_ptr<cv::xfeatures2d::StarDetector>&&’
+  254 |       shared_ptr(shared_ptr&& __r) noexcept
+      |                  ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:246:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&)’
+  246 |  shared_ptr(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:246:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:234:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*)’
+  234 |  shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:234:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘cv::FakeFeatureDetector*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:212:2: note: candidate: ‘template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc)’
+  212 |  shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:212:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 3 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:193:2: note: candidate: ‘template<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc)’
+  193 |  shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:193:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 3 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:173:2: note: candidate: ‘template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter)’
+  173 |  shared_ptr(nullptr_t __p, _Deleter __d)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:173:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 2 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:156:2: note: candidate: ‘template<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter)’
+  156 |  shared_ptr(_Yp* __p, _Deleter __d)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:156:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 2 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:139:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*)’
+  139 |  shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:139:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class ... _Args> using _Constructible = typename std::enable_if<std::is_constructible<std::__shared_ptr<_Tp>, _Args ...>::value>::type [with _Args = {cv::FakeFeatureDetector*}; _Tp = cv::xfeatures2d::StarDetector]’:
+/usr/include/c++/9/bits/shared_ptr.h:137:30:   required from ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::FakeFeatureDetector; T = cv::xfeatures2d::StarDetector; std::false_type = std::integral_constant<bool, false>]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::FakeFeatureDetector; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:330:67:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:106:8: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+  106 |  using _Constructible = typename enable_if<
+      |        ^~~~~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::FakeFeatureDetector; T = cv::xfeatures2d::StarDetector; std::false_type = std::integral_constant<bool, false>]’:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::FakeFeatureDetector; T = cv::xfeatures2d::StarDetector]’
+match_all.cpp:330:67:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:129:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::StarDetector]’
+  129 |       shared_ptr(const shared_ptr&) noexcept = default;
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:129:18: note:   no known conversion for argument 1 from ‘cv::FakeFeatureDetector*’ to ‘const std::shared_ptr<cv::xfeatures2d::StarDetector>&’
+  129 |       shared_ptr(const shared_ptr&) noexcept = default;
+      |                  ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:127:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = cv::xfeatures2d::StarDetector]’
+  127 |       constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:127:17: note:   candidate expects 0 arguments, 1 provided
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::GriefDescriptorExtractor; T = cv::xfeatures2d::BriefDescriptorExtractor; std::false_type = std::integral_constant<bool, false>]’:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::GriefDescriptorExtractor; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:345:91:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: error: no matching function for call to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::shared_ptr(cv::GriefDescriptorExtractor*&)’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:367:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  367 |       shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t)
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:367:7: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/9/bits/shared_ptr.h:358:2: note: candidate: ‘template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...)’
+  358 |  shared_ptr(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:358:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::_Sp_alloc_shared_tag<_Tp>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:307:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor; std::nullptr_t = std::nullptr_t]’
+  307 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:307:28: note:   no known conversion for argument 1 from ‘cv::GriefDescriptorExtractor*’ to ‘std::nullptr_t’
+  307 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                            ^~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:299:2: note: candidate: ‘template<class _Yp, class _Del, std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::_Constructible<std::unique_ptr<_Tp, _Dp>, std::__sp_array_delete>* <anonymous> > std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&)’
+  299 |  shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:299:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::unique_ptr<_Tp, _Dp>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:290:2: note: candidate: ‘template<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&)’
+  290 |  shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:290:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::unique_ptr<_Tp, _Dp>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:282:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&)’
+  282 |  shared_ptr(auto_ptr<_Yp>&& __r);
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:282:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::auto_ptr<_Up>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:275:11: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&)’
+  275 |  explicit shared_ptr(const weak_ptr<_Yp>& __r)
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:275:11: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::weak_ptr<_Tp>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:263:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&)’
+  263 |  shared_ptr(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:263:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::shared_ptr<_Tp>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:254:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  254 |       shared_ptr(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:254:31: note:   no known conversion for argument 1 from ‘cv::GriefDescriptorExtractor*’ to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&&’
+  254 |       shared_ptr(shared_ptr&& __r) noexcept
+      |                  ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:246:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&)’
+  246 |  shared_ptr(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:246:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:234:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*)’
+  234 |  shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:234:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘cv::GriefDescriptorExtractor*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:212:2: note: candidate: ‘template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc)’
+  212 |  shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:212:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 3 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:193:2: note: candidate: ‘template<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc)’
+  193 |  shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:193:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 3 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:173:2: note: candidate: ‘template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter)’
+  173 |  shared_ptr(nullptr_t __p, _Deleter __d)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:173:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 2 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:156:2: note: candidate: ‘template<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter)’
+  156 |  shared_ptr(_Yp* __p, _Deleter __d)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:156:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 2 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:139:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*)’
+  139 |  shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:139:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class ... _Args> using _Constructible = typename std::enable_if<std::is_constructible<std::__shared_ptr<_Tp>, _Args ...>::value>::type [with _Args = {cv::GriefDescriptorExtractor*}; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’:
+/usr/include/c++/9/bits/shared_ptr.h:137:30:   required from ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::GriefDescriptorExtractor; T = cv::xfeatures2d::BriefDescriptorExtractor; std::false_type = std::integral_constant<bool, false>]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::GriefDescriptorExtractor; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:345:91:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:106:8: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+  106 |  using _Constructible = typename enable_if<
+      |        ^~~~~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::GriefDescriptorExtractor; T = cv::xfeatures2d::BriefDescriptorExtractor; std::false_type = std::integral_constant<bool, false>]’:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::GriefDescriptorExtractor; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:345:91:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:129:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  129 |       shared_ptr(const shared_ptr&) noexcept = default;
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:129:18: note:   no known conversion for argument 1 from ‘cv::GriefDescriptorExtractor*’ to ‘const std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&’
+  129 |       shared_ptr(const shared_ptr&) noexcept = default;
+      |                  ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:127:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  127 |       constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:127:17: note:   candidate expects 0 arguments, 1 provided
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::xfeatures2d::FREAK; T = cv::xfeatures2d::BriefDescriptorExtractor; std::false_type = std::integral_constant<bool, false>]’:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::xfeatures2d::FREAK; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:347:69:   required from here
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: error: no matching function for call to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::shared_ptr(cv::xfeatures2d::FREAK*&)’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:367:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Tp>&, std::nothrow_t) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  367 |       shared_ptr(const weak_ptr<_Tp>& __r, std::nothrow_t)
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:367:7: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/9/bits/shared_ptr.h:358:2: note: candidate: ‘template<class _Alloc, class ... _Args> std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...)’
+  358 |  shared_ptr(_Sp_alloc_shared_tag<_Alloc> __tag, _Args&&... __args)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:358:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::_Sp_alloc_shared_tag<_Tp>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:307:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor; std::nullptr_t = std::nullptr_t]’
+  307 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:307:28: note:   no known conversion for argument 1 from ‘cv::xfeatures2d::FREAK*’ to ‘std::nullptr_t’
+  307 |       constexpr shared_ptr(nullptr_t) noexcept : shared_ptr() { }
+      |                            ^~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:299:2: note: candidate: ‘template<class _Yp, class _Del, std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>::_Constructible<std::unique_ptr<_Tp, _Dp>, std::__sp_array_delete>* <anonymous> > std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&)’
+  299 |  shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:299:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::unique_ptr<_Tp, _Dp>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:290:2: note: candidate: ‘template<class _Yp, class _Del, class> std::shared_ptr<_Tp>::shared_ptr(std::unique_ptr<_Up, _Ep>&&)’
+  290 |  shared_ptr(unique_ptr<_Yp, _Del>&& __r)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:290:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::unique_ptr<_Tp, _Dp>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:282:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::auto_ptr<_Up>&&)’
+  282 |  shared_ptr(auto_ptr<_Yp>&& __r);
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:282:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::auto_ptr<_Up>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:275:11: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::weak_ptr<_Yp>&)’
+  275 |  explicit shared_ptr(const weak_ptr<_Yp>& __r)
+      |           ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:275:11: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::weak_ptr<_Tp>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:263:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Yp>&&)’
+  263 |  shared_ptr(shared_ptr<_Yp>&& __r) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:263:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘std::shared_ptr<_Tp>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:254:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(std::shared_ptr<_Tp>&&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  254 |       shared_ptr(shared_ptr&& __r) noexcept
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:254:31: note:   no known conversion for argument 1 from ‘cv::xfeatures2d::FREAK*’ to ‘std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&&’
+  254 |       shared_ptr(shared_ptr&& __r) noexcept
+      |                  ~~~~~~~~~~~~~^~~
+/usr/include/c++/9/bits/shared_ptr.h:246:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&)’
+  246 |  shared_ptr(const shared_ptr<_Yp>& __r) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:246:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:234:2: note: candidate: ‘template<class _Yp> std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Yp>&, std::shared_ptr<_Tp>::element_type*)’
+  234 |  shared_ptr(const shared_ptr<_Yp>& __r, element_type* __p) noexcept
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:234:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘cv::xfeatures2d::FREAK*’
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:212:2: note: candidate: ‘template<class _Deleter, class _Alloc> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter, _Alloc)’
+  212 |  shared_ptr(nullptr_t __p, _Deleter __d, _Alloc __a)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:212:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 3 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:193:2: note: candidate: ‘template<class _Yp, class _Deleter, class _Alloc, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter, _Alloc)’
+  193 |  shared_ptr(_Yp* __p, _Deleter __d, _Alloc __a)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:193:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 3 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:173:2: note: candidate: ‘template<class _Deleter> std::shared_ptr<_Tp>::shared_ptr(std::nullptr_t, _Deleter)’
+  173 |  shared_ptr(nullptr_t __p, _Deleter __d)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:173:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 2 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:156:2: note: candidate: ‘template<class _Yp, class _Deleter, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*, _Deleter)’
+  156 |  shared_ptr(_Yp* __p, _Deleter __d)
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:156:2: note:   template argument deduction/substitution failed:
+In file included from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:100:72: note:   candidate expects 2 arguments, 1 provided
+  100 |     inline Ptr(const std::false_type&, Y* ptr) : std::shared_ptr<T>(ptr) {}
+      |                                                                        ^
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:11,
+                 from /usr/local/include/opencv4/opencv2/core/cvstd.hpp:81,
+                 from /usr/local/include/opencv4/opencv2/core/base.hpp:58,
+                 from /usr/local/include/opencv4/opencv2/core.hpp:53,
+                 from /usr/local/include/opencv4/opencv2/opencv.hpp:52,
+                 from match_all.cpp:3:
+/usr/include/c++/9/bits/shared_ptr.h:139:2: note: candidate: ‘template<class _Yp, class> std::shared_ptr<_Tp>::shared_ptr(_Yp*)’
+  139 |  shared_ptr(_Yp* __p) : __shared_ptr<_Tp>(__p) { }
+      |  ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:139:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/9/bits/shared_ptr.h: In substitution of ‘template<class _Tp> template<class ... _Args> using _Constructible = typename std::enable_if<std::is_constructible<std::__shared_ptr<_Tp>, _Args ...>::value>::type [with _Args = {cv::xfeatures2d::FREAK*}; _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’:
+/usr/include/c++/9/bits/shared_ptr.h:137:30:   required from ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::xfeatures2d::FREAK; T = cv::xfeatures2d::BriefDescriptorExtractor; std::false_type = std::integral_constant<bool, false>]’
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::xfeatures2d::FREAK; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:347:69:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:106:8: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+  106 |  using _Constructible = typename enable_if<
+      |        ^~~~~~~~~~~~~~
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp: In instantiation of ‘cv::Ptr<T>::Ptr(const false_type&, Y*) [with Y = cv::xfeatures2d::FREAK; T = cv::xfeatures2d::BriefDescriptorExtractor; std::false_type = std::integral_constant<bool, false>]’:
+/usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp:103:57:   required from ‘cv::Ptr<T>::Ptr(Y*) [with Y = cv::xfeatures2d::FREAK; T = cv::xfeatures2d::BriefDescriptorExtractor]’
+match_all.cpp:347:69:   required from here
+/usr/include/c++/9/bits/shared_ptr.h:129:7: note: candidate: ‘std::shared_ptr<_Tp>::shared_ptr(const std::shared_ptr<_Tp>&) [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  129 |       shared_ptr(const shared_ptr&) noexcept = default;
+      |       ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:129:18: note:   no known conversion for argument 1 from ‘cv::xfeatures2d::FREAK*’ to ‘const std::shared_ptr<cv::xfeatures2d::BriefDescriptorExtractor>&’
+  129 |       shared_ptr(const shared_ptr&) noexcept = default;
+      |                  ^~~~~~~~~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:127:17: note: candidate: ‘constexpr std::shared_ptr<_Tp>::shared_ptr() [with _Tp = cv::xfeatures2d::BriefDescriptorExtractor]’
+  127 |       constexpr shared_ptr() noexcept : __shared_ptr<_Tp>() { }
+      |                 ^~~~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:127:17: note:   candidate expects 0 arguments, 1 provided
+match_all.cpp: In function ‘int initializeDateset()’:
+match_all.cpp:250:21: warning: ‘%s’ directive writing up to 999 bytes into a region of size 100 [-Wformat-overflow=]
+  250 |   sprintf(filename,"%s/%s/displacements.txt",dataset,season[i]);
+      |                     ^~                       ~~~~~~~
+match_all.cpp:250:10: note: ‘sprintf’ output between 20 and 2018 bytes into a destination of size 100
+  250 |   sprintf(filename,"%s/%s/displacements.txt",dataset,season[i]);
+      |   ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+match_all.cpp:293:21: warning: ‘%s’ directive writing up to 999 bytes into a region of size 100 [-Wformat-overflow=]
+  293 |   sprintf(filename,"%s/%s/displacements.txt",dataset,season[i]);
+      |                     ^~                       ~~~~~~~
+match_all.cpp:293:10: note: ‘sprintf’ output between 20 and 2018 bytes into a destination of size 100
+  293 |   sprintf(filename,"%s/%s/displacements.txt",dataset,season[i]);
+      |   ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+match_all.cpp: In function ‘int main(int, char**)’:
+match_all.cpp:379:22: warning: ‘%s’ directive writing up to 999 bytes into a region of size 100 [-Wformat-overflow=]
+  379 |    sprintf(filename,"%s/%s/%09i.bmp",dataset,season[s],ims);
+      |                      ^~              ~~~~~~~
+match_all.cpp:379:11: note: ‘sprintf’ output between 16 and 2016 bytes into a destination of size 100
+  379 |    sprintf(filename,"%s/%s/%09i.bmp",dataset,season[s],ims);
+      |    ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+match_all.cpp:399:25: warning: ‘%s’ directive writing up to 999 bytes into a region of size between 0 and 999 [-Wformat-overflow=]
+  399 |    sprintf(fileInfo,"%s/%s/spgrid_regions_%09i_740.txt",dataset,season[s],ims);
+      |                         ^~
+match_all.cpp:399:11: note: ‘sprintf’ output between 35 and 2035 bytes into a destination of size 1000
+  399 |    sprintf(fileInfo,"%s/%s/spgrid_regions_%09i_740.txt",dataset,season[s],ims);
+      |    ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+match_all.cpp:601:26: warning: ‘%s’ directive writing up to 999 bytes into a region of size 100 [-Wformat-overflow=]
+  601 |        sprintf(filename,"%s/%09i-%02i-%02i-A.bmp",dataset,totalTests,a,b);
+      |                          ^~                       ~~~~~~~
+match_all.cpp:601:15: note: ‘sprintf’ output between 23 and 1042 bytes into a destination of size 100
+  601 |        sprintf(filename,"%s/%09i-%02i-%02i-A.bmp",dataset,totalTests,a,b);
+      |        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+match_all.cpp:612:26: warning: ‘%s’ directive writing up to 999 bytes into a region of size 100 [-Wformat-overflow=]
+  612 |        sprintf(filename,"%s/%09i-%02i-%02i-B.bmp",dataset,totalTests,a,b);
+      |                          ^~                       ~~~~~~~
+match_all.cpp:612:15: note: ‘sprintf’ output between 23 and 1042 bytes into a destination of size 100
+  612 |        sprintf(filename,"%s/%09i-%02i-%02i-B.bmp",dataset,totalTests,a,b);
+      |        ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+match_all.cpp:633:18: warning: ‘%s’ directive writing up to 999 bytes into a region of size 100 [-Wformat-overflow=]
+  633 |  sprintf(report,"%s/results/%s_%s.histogram",dataset,detectorName,descriptorName);
+      |                  ^~                          ~~~~~~~
+match_all.cpp:633:9: note: ‘sprintf’ output between 21 and 3018 bytes into a destination of size 100
+  633 |  sprintf(report,"%s/results/%s_%s.histogram",dataset,detectorName,descriptorName);
+      |  ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Makefile:22: match_all] Error 1
