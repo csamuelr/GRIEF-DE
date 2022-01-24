@@ -7,7 +7,7 @@
 +
 ((SMOOTHED(10, 9) < SMOOTHED(11, 10)) << 5)
 +
-((SMOOTHED(15, 18) < SMOOTHED(15, 21)) << 4)
+((SMOOTHED(-1, -8) < SMOOTHED(15, 12)) << 4)
 +
 ((SMOOTHED(16, -15) < SMOOTHED(4, 22)) << 3)
 +

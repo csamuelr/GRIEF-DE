@@ -11,7 +11,7 @@
 #include "opencv2/xfeatures2d.hpp"
 namespace cv{
 
-class CV_EXPORTS GriefDescriptorExtractor : public xfeatures2d::BriefDescriptorExtractor
+class CV_EXPORTS GriefDescriptorExtractor : public DescriptorExtractor
 {
 public:
     static const int PATCH_SIZE = 48;

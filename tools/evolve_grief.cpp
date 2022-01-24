@@ -58,13 +58,16 @@ int generateNew()
 	int y2[512];
 	int xWindow = WINDOW_SIZE;
 	int yWindow = WINDOW_SIZE;
-	FILE* file = fopen("tools/grief/test_pairs.txt","r+");
+	FILE* file = fopen("/home/adriel/repos/GRIEF/tools/grief/test_pairs.txt","r+");
+	
 	for (int i = 0;i<512;i++){
 		fscanf(file,"%i %i %i %i\n",&x1[i],&y1[i],&x2[i],&y2[i]);
 	}
+	
+	
 	fclose(file);
 
-	file = fopen("tools/grief/pair_stats.txt","w");
+	file = fopen("/home/adriel/repos/GRIEF/tools/grief/pair_stats.txt","w");
 	for (int i = 0;i<griefDescriptorLength;i++){
 		fprintf(file,"%i %i %i %i %i\n",x1[i],y1[i],x2[i],y2[i],griefRating[i].value);
 	}
@@ -88,7 +91,7 @@ int generateNew()
 		y2[id] = rand()%yWindow-yWindow/2;
 	}
 
-	file = fopen("tools/grief/test_pairs.txt","w");
+	file = fopen("/home/adriel/repos/GRIEF/tools/grief/test_pairs.txt","w");
 	for (int i = 0;i<512;i++){
 		fprintf(file,"%i %i %i %i\n",x1[i],y1[i],x2[i],y2[i]);
 	}
@@ -242,8 +245,8 @@ int main(int argc, char ** argv)
 	int timer = getTime();
 	
 	do{
-		sprintf(filename,"%s/season_%02i/%09i.bmp",argv[1],numSeasons,numLocations);
-		
+		sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],numSeasons,numLocations);
+		std::cout << filename << std::endl;
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 		if (tmpIm.data != NULL)
 		{
@@ -261,12 +264,13 @@ int main(int argc, char ** argv)
 		printf("WARNING: Dataset is annotated only partially (check if the ""displacements.txt"" files exist in every ""season_nn"" directory). Ignoring hand annotation data.\n");
 	}
 	supervised = (numDisplacements == numSeasons);
-
+	
 	/*check the number of locations*/
 	do{
-		sprintf(filename,"%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
+		sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 	}while (numLocations < MAX_LOCATIONS && tmpIm.data != NULL);
+
 	numLocations--;
 	printf("Dataset: %ix%i images from %i seasons and %i places, annotated %i, loadTime %i\n",x,y,numSeasons,numLocations,numDisplacements,getTime()-timer);
 
@@ -279,7 +283,7 @@ int main(int argc, char ** argv)
 	{
 		for (int j=0;j<numLocations;j++)
 		{
-			sprintf(filename,"%s/season_%02i/%09i.bmp",argv[1],i,j);
+			sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],i,j);
 			tmpIm =  imread(filename, cv::IMREAD_COLOR);
 			if (tmpIm.data == NULL) {
 				fprintf(stderr,"ERROR: Image %s could not be loaded. \n",filename);
@@ -326,7 +330,7 @@ int main(int argc, char ** argv)
 	
 	for (int location = 0;location<numLocations;location++){
 		for (int i=0;i<numSeasons;i++){
-			sprintf(filename,"%s/season_%02i/%09i.bmp",argv[1],i,location);
+			sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],i,location);
 			im[i] =  imread(filename, cv::IMREAD_COLOR);
 			img[i] = imread(filename, cv::IMREAD_GRAYSCALE);
 			if(img[i].empty())
@@ -347,15 +351,19 @@ int main(int argc, char ** argv)
 		Ptr<cv::xfeatures2d::StarDetector>detector = cv::xfeatures2d::StarDetector::create(45,0,10,8,5);		//TODO make this selectable
 		//FakeFeatureDetector detector;		//TODO make this selectable
 		//BRISK detector(0,4);
+		
 		GriefDescriptorExtractor extractor(griefDescriptorLength/8);
-		Ptr<cv::xfeatures2d::BriefDescriptorExtractor> descriptor = xfeatures2d::BriefDescriptorExtractor::create(32);
+		Ptr<cv::xfeatures2d::BriefDescriptorExtractor> descriptor = xfeatures2d::BriefDescriptorExtractor::create(griefDescriptorLength/8);
 		time0 = getTime();
+		
 		for (int i = 0;i<numSeasons;i++){
 			sprintf(fileInfo,"%s/season_%02i/spgrid_regions_%09i.txt",argv[1],i,location);
 			detector->detect(img[i], keypoints[i]);
 			descriptor->compute(img[i], keypoints[i], descriptors[i]);
 			printf("Location %i season %i, extracted %i\n",location,i,(int)keypoints[i].size());
 		}
+		
+		
 		time2 = time1 = getTime();
 		
 
@@ -372,7 +380,7 @@ int main(int argc, char ** argv)
 				/*are there any tentative correspondences ?*/
 				int sumDev = 0;
 				int numPoints = 0;
-
+				
 				int histMax = 0;
 				int auxMax=0;
 				int manualDir = 0; 
@@ -409,7 +417,7 @@ int main(int argc, char ** argv)
 						}
 					}
 
-
+					
 					for (int i =0;i<numBins;i++){
 						if (auxMax < bestHistogram[i] && bestHistogram[i] != histMax){
 							auxMax = bestHistogram[i];
@@ -457,12 +465,12 @@ int main(int argc, char ** argv)
 						}
 					}
 					//if (histMax > 0) printf("\nDirection histogram %i %i %i\n",-(sumDev/histMax),histMax,auxMax); else printf("\nDirection histogram 1000 0 0\n");
-					if (histMax > 0 || supervised) printf("%04i %02i%02i %i %i %i %i\n",location,ik+1,jk+1,histDir,manualDir,histMax,auxMax); else printf("%04i %02i%02i 1000 -1000 0 0\n",location,ik+1,jk+1);
+					if (histMax > 0 || supervised) printf("%04i %02i %02i %i %i %i %i\n",location,ik+1,jk+1,histDir,manualDir,histMax,auxMax); else printf("%04i %02i%02i 1000 -1000 0 0\n",location,ik+1,jk+1);
 				}else{
 					printf("%04i %02i%02i 1000 -1000 0 0\n",location,ik+1,jk+1);
 					matchFail = true;
 				}
-
+				
 				/*double minVal; 
 				double maxVal; 
 				Point minLoc; 
@@ -473,7 +481,8 @@ int main(int argc, char ** argv)
 				imwrite("heh.bmp",submat);*/
 
 				if (matchFail) matchingFailures++;
-				matchingTests++;	
+				matchingTests++;
+				
 				//for drawing the results
 				if (draw&&matchFail)
 				{
@@ -488,24 +497,32 @@ int main(int argc, char ** argv)
 						kp.pt.y = keypoints[ik][s].pt.x;
 						kpA.push_back(kp);
 					}
+					
 					for (int s=0;s<keypoints[jk].size();s++){
 						kp = keypoints[jk][s];
 						kp.pt.x = keypoints[jk][s].pt.y;
 						kp.pt.y = keypoints[jk][s].pt.x;
 						kpB.push_back(kp);
 					}
+					
 					cv::transpose(im[ik], imA);
 					cv::transpose(im[jk], imB);
+					
+					
 					namedWindow("matches", 1);
+					
 					drawMatches(imA, kpA, imB, kpB, inliers_matches, img_matches, Scalar(0, 0, 255), Scalar(0, 0, 255), vector<char>(), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
+					
 					cv::transpose(img_matches,img_matches_transposed);
 					imshow("matches", img_matches_transposed);
 					waitKey(0);
 				}
+				
 				//end drawing
 			}
 		}
 	}
+	
 	generateNew();
 	return 0;
 }
