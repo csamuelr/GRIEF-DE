@@ -13,11 +13,17 @@
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
 
+#include <iostream>
+#include <string>
+
 #define CROSSCHECK true 
 #define VERTICAL_LIMIT 100
 #define MAX_SEASONS 100
 #define MAX_LOCATIONS 1000
 #define WINDOW_SIZE 48 
+
+std::string DATASETS_PATH ("/home/samuel/Dev/Python/GRIEF-DE/GRIEF-datasets/");
+std::string WORK_PATH ("/home/samuel/Dev/Python/GRIEF-DE/");
 
 char fileInfo[1000];
 int numExchange = 10;
@@ -33,7 +39,7 @@ int griefDescriptorLength= 512;
 char dataset[1000];
 char season[1000][1000]; 
 int matchingTests = 0;
-int matchingFailures = 0;
+int matchingFailures = 0; 
 typedef struct{
 	int id;
 	int value;
@@ -58,16 +64,23 @@ int generateNew()
 	int y2[512];
 	int xWindow = WINDOW_SIZE;
 	int yWindow = WINDOW_SIZE;
-	FILE* file = fopen("/home/adriel/repos/GRIEF/tools/grief/test_pairs.txt","r+");
+
+	string s;
+
+	s = WORK_PATH + "tools/grief/test_pairs.txt";
+	const char *path1 = s.c_str();
+
+	FILE* file = fopen(path1,"r+");
 	
 	for (int i = 0;i<512;i++){
 		fscanf(file,"%i %i %i %i\n",&x1[i],&y1[i],&x2[i],&y2[i]);
-	}
-	
-	
+	}	
 	fclose(file);
 
-	file = fopen("/home/adriel/repos/GRIEF/tools/grief/pair_stats.txt","w");
+	s = WORK_PATH + "tools/grief/pair_stats.txt";
+	const char *path2 = s.c_str();
+
+	file = fopen(path2, "w");
 	for (int i = 0;i<griefDescriptorLength;i++){
 		fprintf(file,"%i %i %i %i %i\n",x1[i],y1[i],x2[i],y2[i],griefRating[i].value);
 	}
@@ -91,7 +104,10 @@ int generateNew()
 		y2[id] = rand()%yWindow-yWindow/2;
 	}
 
-	file = fopen("/home/adriel/repos/GRIEF/tools/grief/test_pairs.txt","w");
+	s = WORK_PATH + "tools/grief/test_pairs.txt";
+	const char *path3 = s.c_str();
+
+	file = fopen(path3, "w");
 	for (int i = 0;i<512;i++){
 		fprintf(file,"%i %i %i %i\n",x1[i],y1[i],x2[i],y2[i]);
 	}
@@ -102,9 +118,9 @@ int generateNew()
 
 int getTime()
 {
-  struct  timeval currentTime;
-  gettimeofday(&currentTime, NULL);
-  return currentTime.tv_sec*1000 + currentTime.tv_usec/1000;
+	struct timeval currentTime;
+	gettimeofday(&currentTime, NULL);
+	return currentTime.tv_sec*1000 + currentTime.tv_usec/1000;
 }
 
 namespace cv{
@@ -245,12 +261,13 @@ int main(int argc, char ** argv)
 	int timer = getTime();
 	
 	do{
-		sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],numSeasons,numLocations);
+		const char *datasets_path = DATASETS_PATH.c_str();
+		sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp" ,argv[1],numSeasons,numLocations);
 		std::cout << filename << std::endl;
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 		if (tmpIm.data != NULL)
 		{
-			sprintf(filename,"%s/season_%02i/displacements.txt",argv[1],numSeasons);
+			sprintf(filename, "%s/season_%02i/displacements.txt", argv[1],numSeasons);
 			if (fopen(filename,"r") != NULL) numDisplacements++;
 			x = tmpIm.cols;
 			y = tmpIm.rows;
@@ -267,7 +284,8 @@ int main(int argc, char ** argv)
 	
 	/*check the number of locations*/
 	do{
-		sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
+		const char *datasets_path = DATASETS_PATH.c_str();
+		sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 	}while (numLocations < MAX_LOCATIONS && tmpIm.data != NULL);
 
@@ -282,8 +300,9 @@ int main(int argc, char ** argv)
 	for (int i=0;i<numSeasons;i++)
 	{
 		for (int j=0;j<numLocations;j++)
-		{
-			sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],i,j);
+		{	
+			const char *datasets_path = DATASETS_PATH.c_str();
+			sprintf(filename, datasets_path, "/%s/season_%02i/%09i.bmp",argv[1],i,j);
 			tmpIm =  imread(filename, cv::IMREAD_COLOR);
 			if (tmpIm.data == NULL) {
 				fprintf(stderr,"ERROR: Image %s could not be loaded. \n",filename);
@@ -330,7 +349,8 @@ int main(int argc, char ** argv)
 	
 	for (int location = 0;location<numLocations;location++){
 		for (int i=0;i<numSeasons;i++){
-			sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],i,location);
+			const char *datasets_path = DATASETS_PATH.c_str();
+			sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp",argv[1],i,location);
 			im[i] =  imread(filename, cv::IMREAD_COLOR);
 			img[i] = imread(filename, cv::IMREAD_GRAYSCALE);
 			if(img[i].empty())
