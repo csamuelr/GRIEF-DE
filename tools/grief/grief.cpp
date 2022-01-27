@@ -97,7 +97,7 @@ static void pixelTests64(const Mat& sum, const std::vector<KeyPoint>& keypoints,
 namespace cv
 {
 
-GriefDescriptorExtractor::GriefDescriptorExtractor(int bytes) :
+GriefDescriptorExtractor::GriefDescriptorExtractor(int bytes) : 
     bytes_(bytes), test_fn_(NULL)
 {
     switch (bytes)

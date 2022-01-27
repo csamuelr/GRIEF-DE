@@ -9,5 +9,5 @@ cat $1|cut -f 1,2,3,4 -d ' ' 	>tools/grief/test_pairs.txt;
 tail -n 256 tools/grief/test_pairs.grief >>tools/grief/test_pairs.txt;
 fi
 cd tools/;
-./generate.sh 
+./generate.sh > /dev/null
 cd ..;

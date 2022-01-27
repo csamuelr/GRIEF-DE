@@ -256,12 +256,13 @@ int main(int argc, char ** argv)
 	int x,y; 
 	FILE *displacements;
 	
+	const char *datasets_path = DATASETS_PATH.c_str();
+
 	/*load dataset parameters, check dataset consistency*/
 	/*check the number of seasons and check for existance of the displacement files*/
 	int timer = getTime();
 	
 	do{
-		const char *datasets_path = DATASETS_PATH.c_str();
 		sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp" ,argv[1],numSeasons,numLocations);
 		std::cout << filename << std::endl;
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
@@ -284,7 +285,6 @@ int main(int argc, char ** argv)
 	
 	/*check the number of locations*/
 	do{
-		const char *datasets_path = DATASETS_PATH.c_str();
 		sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 	}while (numLocations < MAX_LOCATIONS && tmpIm.data != NULL);
@@ -301,7 +301,7 @@ int main(int argc, char ** argv)
 	{
 		for (int j=0;j<numLocations;j++)
 		{	
-			const char *datasets_path = DATASETS_PATH.c_str();
+			
 			sprintf(filename, datasets_path, "/%s/season_%02i/%09i.bmp",argv[1],i,j);
 			tmpIm =  imread(filename, cv::IMREAD_COLOR);
 			if (tmpIm.data == NULL) {
@@ -349,7 +349,6 @@ int main(int argc, char ** argv)
 	
 	for (int location = 0;location<numLocations;location++){
 		for (int i=0;i<numSeasons;i++){
-			const char *datasets_path = DATASETS_PATH.c_str();
 			sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp",argv[1],i,location);
 			im[i] =  imread(filename, cv::IMREAD_COLOR);
 			img[i] = imread(filename, cv::IMREAD_GRAYSCALE);

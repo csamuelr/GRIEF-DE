@@ -10,10 +10,10 @@ for i in $(seq 1 $2);
 do 
 	#recompiles GRIEF code
 	cd tools/;
-	./generate.sh >/dev/null;
+	./generate.sh > /dev/null;
 	cd ..;
 	f=$e;
-	./tools/evolve_grief $1 |grep fitness >store.tmp
+	./tools/evolve_grief $1 |grep fitness >store.tmp 
 	e=$(cat store.tmp|cut -f 3 -d ' ');
 	r=$(cat store.tmp|cut -f 4 -d ' ');
 	echo Population $i Fitness $e Error $r;
