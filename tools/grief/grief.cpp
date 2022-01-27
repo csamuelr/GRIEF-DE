@@ -39,7 +39,6 @@
 // the use of this software, even if advised of the possibility of such damage.
 //
 //M*/
-
 #include "grief.h"
 #include "precomp.hpp"
 #include <algorithm>
@@ -48,11 +47,21 @@
 #include <iostream>
 #include <iomanip>
 
-using namespace cv;
+namespace cv
+{
+namespace xfeatures2d
+{
+
+
+
+Ptr<GriefDescriptorExtractor> GriefDescriptorExtractor::create( int bytes, bool use_orientation )
+{
+    return makePtr<GriefDescriptorExtractorImpl>(bytes, use_orientation );
+}
 
 inline int smoothedSum(const Mat& sum, const KeyPoint& pt, int y, int x)
 {
-    static const int HALF_KERNEL = GriefDescriptorExtractor::KERNEL_SIZE / 2;
+    static const int HALF_KERNEL = GriefDescriptorExtractorImpl::KERNEL_SIZE / 2;
 
     int img_y = (int)(pt.pt.y + 0.5) + y;
     int img_x = (int)(pt.pt.x + 0.5) + x;
@@ -62,44 +71,71 @@ inline int smoothedSum(const Mat& sum, const KeyPoint& pt, int y, int x)
            + sum.at<int>(img_y - HALF_KERNEL, img_x - HALF_KERNEL);
 }
 
-static void pixelTests16(const Mat& sum, const std::vector<KeyPoint>& keypoints, Mat& descriptors)
+static void pixelTests16(InputArray _sum, const std::vector<KeyPoint>& keypoints, OutputArray _descriptors, bool use_orientation )
 {
-    for (int i = 0; i < (int)keypoints.size(); ++i)
+    Matx21f R;
+    Mat sum = _sum.getMat(), descriptors = _descriptors.getMat();
+    for (size_t i = 0; i < keypoints.size(); ++i)
     {
-        uchar* desc = descriptors.ptr(i);
+        uchar* desc = descriptors.ptr(static_cast<int>(i));
         const KeyPoint& pt = keypoints[i];
+        if ( use_orientation )
+        {
+          float angle = pt.angle;
+          angle *= (float)(CV_PI/180.f);
+          R(0,0) = sin(angle);
+          R(1,0) = cos(angle);
+        }
+
 #include "generated_16.i"
     }
 }
 
-static void pixelTests32(const Mat& sum, const std::vector<KeyPoint>& keypoints, Mat& descriptors)
+static void pixelTests32(InputArray _sum, const std::vector<KeyPoint>& keypoints, OutputArray _descriptors, bool use_orientation)
 {
-    for (int i = 0; i < (int)keypoints.size(); ++i)
+    Matx21f R;
+    Mat sum = _sum.getMat(), descriptors = _descriptors.getMat();
+    for (size_t i = 0; i < keypoints.size(); ++i)
     {
-        uchar* desc = descriptors.ptr(i);
+        uchar* desc = descriptors.ptr(static_cast<int>(i));
         const KeyPoint& pt = keypoints[i];
+        if ( use_orientation )
+        {
+          float angle = pt.angle;
+          angle *= (float)(CV_PI / 180.f);
+          R(0,0) = sin(angle);
+          R(1,0) = cos(angle);
+        }
 
 #include "generated_32.i"
     }
 }
 
-static void pixelTests64(const Mat& sum, const std::vector<KeyPoint>& keypoints, Mat& descriptors)
+static void pixelTests64(InputArray _sum, const std::vector<KeyPoint>& keypoints, OutputArray _descriptors, bool use_orientation)
 {
-    for (int i = 0; i < (int)keypoints.size(); ++i)
+    Matx21f R;
+    Mat sum = _sum.getMat(), descriptors = _descriptors.getMat();
+    for (size_t i = 0; i < keypoints.size(); ++i)
     {
-        uchar* desc = descriptors.ptr(i);
+        uchar* desc = descriptors.ptr(static_cast<int>(i));
         const KeyPoint& pt = keypoints[i];
+        if ( use_orientation )
+        {
+          float angle = pt.angle;
+          angle *= (float)(CV_PI/180.f);
+          R(0,0) = sin(angle);
+          R(1,0) = cos(angle);
+        }
 
 #include "generated_64.i"
     }
 }
 
-namespace cv
-{
-
-GriefDescriptorExtractor::GriefDescriptorExtractor(int bytes) :
+GriefDescriptorExtractorImpl::GriefDescriptorExtractorImpl(int bytes, bool use_orientation) :
     bytes_(bytes), test_fn_(NULL)
 {
+    use_orientation_ = use_orientation;
+
     switch (bytes)
     {
         case 16:
@@ -112,21 +148,26 @@ GriefDescriptorExtractor::GriefDescriptorExtractor(int bytes) :
             test_fn_ = pixelTests64;
             break;
         default:
-            CV_Error(CV_StsBadArg, "bytes must be 16, 32, or 64");
+            CV_Error(Error::StsBadArg, "bytes must be 16, 32, or 64");
     }
 }
 
-int GriefDescriptorExtractor::descriptorSize() const
+int GriefDescriptorExtractorImpl::descriptorSize() const
 {
     return bytes_;
 }
 
-int GriefDescriptorExtractor::descriptorType() const
+int GriefDescriptorExtractorImpl::descriptorType() const
 {
     return CV_8UC1;
 }
 
-void GriefDescriptorExtractor::read( const FileNode& fn)
+int GriefDescriptorExtractorImpl::defaultNorm() const
+{
+    return NORM_HAMMING;
+}
+
+void GriefDescriptorExtractorImpl::read( const FileNode& fn)
 {
     int dSize = fn["descriptorSize"];
     switch (dSize)
@@ -141,23 +182,25 @@ void GriefDescriptorExtractor::read( const FileNode& fn)
             test_fn_ = pixelTests64;
             break;
         default:
-            CV_Error(CV_StsBadArg, "descriptorSize must be 16, 32, or 64");
+            CV_Error(Error::StsBadArg, "descriptorSize must be 16, 32, or 64");
     }
     bytes_ = dSize;
 }
 
-void GriefDescriptorExtractor::write( FileStorage& fs) const
+void GriefDescriptorExtractorImpl::write( FileStorage& fs) const
 {
     fs << "descriptorSize" << bytes_;
 }
 
-void GriefDescriptorExtractor::computeImpl(const Mat& image, std::vector<KeyPoint>& keypoints, Mat& descriptors) const
+void GriefDescriptorExtractorImpl::compute(InputArray image,
+                                           std::vector<KeyPoint>& keypoints,
+                                           OutputArray descriptors)
 {
     // Construct integral image for fast smoothing (box filter)
     Mat sum;
 
-    Mat grayImage = image;
-    if( image.type() != CV_8U ) cvtColor( image, grayImage, CV_BGR2GRAY );
+    Mat grayImage = image.getMat();
+    if( image.type() != CV_8U ) cvtColor( image, grayImage, COLOR_BGR2GRAY );
 
     ///TODO allow the user to pass in a precomputed integral image
     //if(image.type() == CV_32S)
@@ -169,9 +212,10 @@ void GriefDescriptorExtractor::computeImpl(const Mat& image, std::vector<KeyPoin
     //Remove keypoints very close to the border
     KeyPointsFilter::runByImageBorder(keypoints, image.size(), PATCH_SIZE/2 + KERNEL_SIZE/2);
 
-    descriptors = Mat::zeros((int)keypoints.size(), bytes_, CV_8U);
-    test_fn_(sum, keypoints, descriptors);
+    descriptors.create((int)keypoints.size(), bytes_, CV_8U);
+    descriptors.setTo(Scalar::all(0));
+    test_fn_(sum, keypoints, descriptors, use_orientation_);
 }
 
+}
 } // namespace cv
-

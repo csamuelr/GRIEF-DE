@@ -13,17 +13,11 @@
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
 
-#include <iostream>
-#include <string>
-
 #define CROSSCHECK true 
 #define VERTICAL_LIMIT 100
 #define MAX_SEASONS 100
 #define MAX_LOCATIONS 1000
 #define WINDOW_SIZE 48 
-
-std::string DATASETS_PATH ("/home/samuel/Dev/Python/GRIEF-DE/GRIEF-datasets/");
-std::string WORK_PATH ("/home/samuel/Dev/Python/GRIEF-DE/");
 
 char fileInfo[1000];
 int numExchange = 10;
@@ -39,7 +33,7 @@ int griefDescriptorLength= 512;
 char dataset[1000];
 char season[1000][1000]; 
 int matchingTests = 0;
-int matchingFailures = 0; 
+int matchingFailures = 0;
 typedef struct{
 	int id;
 	int value;
@@ -56,7 +50,7 @@ int compare(const void * a, const void * b)
   return 0;
 }
 
-int generateNew()
+void generateNew()
 {
 	int x1[512];
 	int y1[512];
@@ -64,23 +58,16 @@ int generateNew()
 	int y2[512];
 	int xWindow = WINDOW_SIZE;
 	int yWindow = WINDOW_SIZE;
-
-	string s;
-
-	s = WORK_PATH + "tools/grief/test_pairs.txt";
-	const char *path1 = s.c_str();
-
-	FILE* file = fopen(path1,"r+");
+	FILE* file = fopen("/home/adriel/repos/GRIEF/tools/grief/test_pairs.txt","r+");
 	
 	for (int i = 0;i<512;i++){
 		fscanf(file,"%i %i %i %i\n",&x1[i],&y1[i],&x2[i],&y2[i]);
-	}	
+	}
+	
+	
 	fclose(file);
 
-	s = WORK_PATH + "tools/grief/pair_stats.txt";
-	const char *path2 = s.c_str();
-
-	file = fopen(path2, "w");
+	file = fopen("/home/adriel/repos/GRIEF/tools/grief/pair_stats.txt","w");
 	for (int i = 0;i<griefDescriptorLength;i++){
 		fprintf(file,"%i %i %i %i %i\n",x1[i],y1[i],x2[i],y2[i],griefRating[i].value);
 	}
@@ -104,10 +91,7 @@ int generateNew()
 		y2[id] = rand()%yWindow-yWindow/2;
 	}
 
-	s = WORK_PATH + "tools/grief/test_pairs.txt";
-	const char *path3 = s.c_str();
-
-	file = fopen(path3, "w");
+	file = fopen("/home/adriel/repos/GRIEF/tools/grief/test_pairs.txt","w");
 	for (int i = 0;i<512;i++){
 		fprintf(file,"%i %i %i %i\n",x1[i],y1[i],x2[i],y2[i]);
 	}
@@ -118,49 +102,11 @@ int generateNew()
 
 int getTime()
 {
-	struct timeval currentTime;
-	gettimeofday(&currentTime, NULL);
-	return currentTime.tv_sec*1000 + currentTime.tv_usec/1000;
+  struct  timeval currentTime;
+  gettimeofday(&currentTime, NULL);
+  return currentTime.tv_sec*1000 + currentTime.tv_usec/1000;
 }
 
-namespace cv{
-
-	class CV_EXPORTS FakeFeatureDetector : public FeatureDetector
-	{
-		public:
-			// bytes is a length of descriptor in bytes. It can be equal 16, 32 or 64 bytes.
-			FakeFeatureDetector(){}
-
-
-		protected:
-			virtual void detectImpl( const Mat& image, vector<KeyPoint>& keypoints, const Mat& mask=Mat() ) const;
-			//virtual void detectImpl(const Mat& image, vector<KeyPoint>& keypoints, Mat& descriptors) const;
-			//typedef void(*PixelTestFn)(const Mat&, const vector<KeyPoint>&, Mat&);
-	};
-}
-
-void FakeFeatureDetector::detectImpl( const Mat& image, vector<KeyPoint>& keypoints, const Mat& mask ) const
-{
-	FILE *file = fopen(fileInfo,"r");
-	keypoints.clear();
-	float a,b,c,d,x,y;
-	KeyPoint kp;
-	while (feof(file) == 0)
-	{
-		fscanf(file,"%f,%f,%f,%f\n",&a,&b,&c,&d);
-		//kp.pt.x = (a+c)/2.0;
-		//kp.pt.y = (b+d)/2.0;
-		kp.pt.x = (a+c)/2.0;
-		kp.pt.y = (b+d)/2.0;
-		kp.angle = 0;
-		kp.octave = 1;
-		kp.response = 2;
-		kp.size = 1.0/fmin((c-a)/2,(d-b)/2);
-		keypoints.push_back(kp);
-	}
-	//fprintf(stdout,"MOTOFOKO %s %i\n",fileInfo,keypoints.size());
-	fclose(file);
-}
 
 //feature matching - this can combine 'ratio' and 'cross-check' 
 void distinctiveMatch(const Mat& descriptors1, const Mat& descriptors2, vector<DMatch>& matches, bool crossCheck=false)
@@ -261,13 +207,12 @@ int main(int argc, char ** argv)
 	int timer = getTime();
 	
 	do{
-		const char *datasets_path = DATASETS_PATH.c_str();
-		sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp" ,argv[1],numSeasons,numLocations);
+		sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],numSeasons,numLocations);
 		std::cout << filename << std::endl;
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 		if (tmpIm.data != NULL)
 		{
-			sprintf(filename, "%s/season_%02i/displacements.txt", argv[1],numSeasons);
+			sprintf(filename,"%s/season_%02i/displacements.txt",argv[1],numSeasons);
 			if (fopen(filename,"r") != NULL) numDisplacements++;
 			x = tmpIm.cols;
 			y = tmpIm.rows;
@@ -284,8 +229,7 @@ int main(int argc, char ** argv)
 	
 	/*check the number of locations*/
 	do{
-		const char *datasets_path = DATASETS_PATH.c_str();
-		sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
+		sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 	}while (numLocations < MAX_LOCATIONS && tmpIm.data != NULL);
 
@@ -300,9 +244,8 @@ int main(int argc, char ** argv)
 	for (int i=0;i<numSeasons;i++)
 	{
 		for (int j=0;j<numLocations;j++)
-		{	
-			const char *datasets_path = DATASETS_PATH.c_str();
-			sprintf(filename, datasets_path, "/%s/season_%02i/%09i.bmp",argv[1],i,j);
+		{
+			sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],i,j);
 			tmpIm =  imread(filename, cv::IMREAD_COLOR);
 			if (tmpIm.data == NULL) {
 				fprintf(stderr,"ERROR: Image %s could not be loaded. \n",filename);
@@ -349,8 +292,7 @@ int main(int argc, char ** argv)
 	
 	for (int location = 0;location<numLocations;location++){
 		for (int i=0;i<numSeasons;i++){
-			const char *datasets_path = DATASETS_PATH.c_str();
-			sprintf(filename, datasets_path, "%s/season_%02i/%09i.bmp",argv[1],i,location);
+			sprintf(filename,"/home/adriel/repos/GRIEF/%s/season_%02i/%09i.bmp",argv[1],i,location);
 			im[i] =  imread(filename, cv::IMREAD_COLOR);
 			img[i] = imread(filename, cv::IMREAD_GRAYSCALE);
 			if(img[i].empty())
@@ -372,8 +314,8 @@ int main(int argc, char ** argv)
 		//FakeFeatureDetector detector;		//TODO make this selectable
 		//BRISK detector(0,4);
 		
-		GriefDescriptorExtractor extractor(griefDescriptorLength/8);
-		Ptr<cv::xfeatures2d::BriefDescriptorExtractor> descriptor = xfeatures2d::BriefDescriptorExtractor::create(griefDescriptorLength/8);
+		
+		Ptr<cv::xfeatures2d::GriefDescriptorExtractor> descriptor = cv::xfeatures2d::GriefDescriptorExtractor::create(griefDescriptorLength/8);
 		time0 = getTime();
 		
 		for (int i = 0;i<numSeasons;i++){

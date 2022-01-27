@@ -10,33 +10,40 @@
 #include <opencv2/flann/miniflann.hpp>
 #include "opencv2/xfeatures2d.hpp"
 namespace cv{
-
-class CV_EXPORTS GriefDescriptorExtractor : public DescriptorExtractor
+namespace xfeatures2d
+{
+class CV_EXPORTS_W GriefDescriptorExtractor : public Feature2D
 {
 public:
-    static const int PATCH_SIZE = 48;
-    static const int KERNEL_SIZE = 9;
+    CV_WRAP static Ptr<GriefDescriptorExtractor> create( int bytes = 32, bool use_orientation = false );
+};
+
+/*
+ * Grief Descriptor
+ */
+class GriefDescriptorExtractorImpl : public GriefDescriptorExtractor
+{
+public:
+    enum { PATCH_SIZE = 48, KERNEL_SIZE = 9 };
 
     // bytes is a length of descriptor in bytes. It can be equal 16, 32 or 64 bytes.
-    GriefDescriptorExtractor( int bytes = 32 );
+    GriefDescriptorExtractorImpl( int bytes = 32, bool use_orientation = false );
 
-    virtual void read( const FileNode& );
-    virtual void write( FileStorage& ) const;
+    virtual void read( const FileNode& ) CV_OVERRIDE;
+    virtual void write( FileStorage& ) const CV_OVERRIDE;
 
-    virtual int descriptorSize() const;
-    virtual int descriptorType() const;
+    virtual int descriptorSize() const CV_OVERRIDE;
+    virtual int descriptorType() const CV_OVERRIDE;
+    virtual int defaultNorm() const CV_OVERRIDE;
 
-    /// @todo read and write for brief
-
-//    AlgorithmInfo* info() const;
+    virtual void compute(InputArray image, std::vector<KeyPoint>& keypoints, OutputArray descriptors) CV_OVERRIDE;
 
 protected:
-    virtual void computeImpl(const Mat& image, std::vector<KeyPoint>& keypoints, Mat& descriptors) const;
-
-    typedef void(*PixelTestFn)(const Mat&, const std::vector<KeyPoint>&, Mat&);
+    typedef void(*PixelTestFn)(InputArray, const std::vector<KeyPoint>&, OutputArray, bool use_orientation );
 
     int bytes_;
+    bool use_orientation_;
     PixelTestFn test_fn_;
 };
 }
-
+}
