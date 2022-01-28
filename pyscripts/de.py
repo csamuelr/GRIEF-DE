@@ -176,6 +176,13 @@ class DifferentialEvolution:
 
 		v = self.__population[r1].get() + self.__f * ((self.__population[r2].get() - self.__population[r3].get()) + (self.__population[r4].get() - self.__population[r5].get()))
 
+		for j, a in enumerate(v):
+			
+			if a >= 0:
+				v[j] = a%25
+			else:
+				v[j] = -(abs(a)%25)
+
 		return v
 
 
@@ -197,6 +204,13 @@ class DifferentialEvolution:
 		r1, r2, r3 = indexes[1], indexes[2], indexes[3]  
 
 		v = self.__population[r1].get() + self.__f * (( self.__population[best].get() - self.__population[r1].get()) + (self.__population[r2].get() - self.__population[r3].get()))
+		
+		for j, a in enumerate(v):
+			
+			if a >= 0:
+				v[j] = a%25
+			else:
+				v[j] = -(abs(a)%25)
 
 		return v
 
@@ -222,6 +236,13 @@ class DifferentialEvolution:
 		r2, r3 = indexes[2], indexes[3]  
 
 		v = self.__population[best].get() + self.__f * (self.__population[r2].get() - self.__population[r3].get())
+		
+		for j, a in enumerate(v):
+			
+			if a >= 0:
+				v[j] = a%25
+			else:
+				v[j] = -(abs(a)%25)
 
 		return v
 
@@ -249,6 +270,13 @@ class DifferentialEvolution:
 		
 		v = self.__population[current].get() + self.__f * ((self.__population[best].get() - self.__population[current].get()) + (self.__population[r2].get() - self.__population[r3].get()))
 
+		for j, a in enumerate(v):
+			
+			if a >= 0:
+				v[j] = a%25
+			else:
+				v[j] = -(abs(a)%25)
+
 		return v
 
 	def currenttorand_1_bin(self, i):
@@ -269,6 +297,13 @@ class DifferentialEvolution:
 
 		v = self.__population[current].get() + self.__f * ((self.__population[r1].get() - self.__population[current].get()) + (self.__population[r2].get() - self.__population[r3].get()))
 
+		for j, a in enumerate(v):
+			
+			if a >= 0:
+				v[j] = a%25
+			else:
+				v[j] = -(abs(a)%25)
+				
 		return v
 
 

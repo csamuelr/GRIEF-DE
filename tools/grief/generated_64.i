@@ -1067,25 +1067,25 @@
 +
 ((SMOOTHED(2, 21) < SMOOTHED(1, 20)) << 2)
 +
-((SMOOTHED(-3, -18) < SMOOTHED(-13, 2)) << 1)
+((SMOOTHED(5, 4) < SMOOTHED(-15, 11)) << 1)
 +
-((SMOOTHED(-11, -1) < SMOOTHED(-14, 1)) << 0)
+((SMOOTHED(-7, 9) < SMOOTHED(2, -1)) << 0)
 ;
     desc[63] =
-((SMOOTHED(4, -1) < SMOOTHED(-6, 6)) << 7)
+((SMOOTHED(-10, 9) < SMOOTHED(-14, -19)) << 7)
 +
-((SMOOTHED(-16, 8) < SMOOTHED(3, 5)) << 6)
+((SMOOTHED(-16, 4) < SMOOTHED(6, 2)) << 6)
 +
-((SMOOTHED(11, -1) < SMOOTHED(0, 17)) << 5)
+((SMOOTHED(11, 9) < SMOOTHED(-9, -7)) << 5)
 +
-((SMOOTHED(-10, -16) < SMOOTHED(0, -8)) << 4)
+((SMOOTHED(-2, 10) < SMOOTHED(-5, -15)) << 4)
 +
-((SMOOTHED(-7, -23) < SMOOTHED(1, 0)) << 3)
+((SMOOTHED(-22, -2) < SMOOTHED(-7, 9)) << 3)
 +
-((SMOOTHED(-21, -8) < SMOOTHED(0, -3)) << 2)
+((SMOOTHED(-15, 5) < SMOOTHED(-8, -6)) << 2)
 +
-((SMOOTHED(-15, -14) < SMOOTHED(-2, -9)) << 1)
+((SMOOTHED(-15, 0) < SMOOTHED(-4, 8)) << 1)
 +
-((SMOOTHED(5, -8) < SMOOTHED(-14, 4)) << 0)
+((SMOOTHED(-18, 6) < SMOOTHED(15, -10)) << 0)
 ;
 #undef SMOOTHED
