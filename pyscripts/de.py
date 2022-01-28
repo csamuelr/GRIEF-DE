@@ -151,6 +151,13 @@ class DifferentialEvolution:
 
 		v = self.__population[r1].get() + self.__f * (self.__population[r2].get() - self.__population[r3].get())
 
+		for j, a in enumerate(v):
+			
+			if a >= 0:
+				v[j] = a%25
+			else:
+				v[j] = -(abs(a)%25)
+
 		return v
 
 
@@ -290,4 +297,5 @@ if __name__ == '__main__':
 
 	savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), population_data, delimiter=' ', fmt='%s')
 
+	exit(0)
 	

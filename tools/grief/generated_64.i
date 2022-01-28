@@ -151,7 +151,7 @@
 +
 ((SMOOTHED(2, 25) < SMOOTHED(2, 23)) << 1)
 +
-((SMOOTHED(-9, 18) < SMOOTHED(4, 0)) << 0)
+((SMOOTHED(3, -7) < SMOOTHED(-19, -15)) << 0)
 ;
     desc[9] =
 ((SMOOTHED(-9, 15) < SMOOTHED(-9, 14)) << 7)
@@ -753,7 +753,7 @@
 +
 ((SMOOTHED(11, -10) < SMOOTHED(10, -11)) << 6)
 +
-((SMOOTHED(15, 21) < SMOOTHED(-18, -20)) << 5)
+((SMOOTHED(8, -8) < SMOOTHED(-20, 3)) << 5)
 +
 ((SMOOTHED(-20, 20) < SMOOTHED(-21, 19)) << 4)
 +
@@ -834,13 +834,13 @@
 ((SMOOTHED(-4, 11) < SMOOTHED(-4, 12)) << 0)
 ;
     desc[49] =
-((SMOOTHED(-1, -19) < SMOOTHED(18, -3)) << 7)
+((SMOOTHED(5, 14) < SMOOTHED(-10, -22)) << 7)
 +
 ((SMOOTHED(-24, 16) < SMOOTHED(-24, 19)) << 6)
 +
 ((SMOOTHED(7, -8) < SMOOTHED(6, -7)) << 5)
 +
-((SMOOTHED(11, 8) < SMOOTHED(-23, 5)) << 4)
+((SMOOTHED(-20, 0) < SMOOTHED(-3, -24)) << 4)
 +
 ((SMOOTHED(-18, 21) < SMOOTHED(-14, 21)) << 3)
 +
@@ -995,7 +995,7 @@
 +
 ((SMOOTHED(-14, -23) < SMOOTHED(-11, -24)) << 4)
 +
-((SMOOTHED(21, -14) < SMOOTHED(-19, 21)) << 3)
+((SMOOTHED(-17, -5) < SMOOTHED(-20, 8)) << 3)
 +
 ((SMOOTHED(-12, 2) < SMOOTHED(-15, 2)) << 2)
 +
@@ -1021,7 +1021,7 @@
 ((SMOOTHED(5, 17) < SMOOTHED(5, 18)) << 0)
 ;
     desc[60] =
-((SMOOTHED(19, -7) < SMOOTHED(-17, 13)) << 7)
+((SMOOTHED(15, 21) < SMOOTHED(-8, -3)) << 7)
 +
 ((SMOOTHED(20, -17) < SMOOTHED(21, -16)) << 6)
 +
@@ -1067,25 +1067,25 @@
 +
 ((SMOOTHED(2, 21) < SMOOTHED(1, 20)) << 2)
 +
-((SMOOTHED(-23, -23) < SMOOTHED(-10, 24)) << 1)
+((SMOOTHED(-3, -18) < SMOOTHED(-13, 2)) << 1)
 +
-((SMOOTHED(12, -12) < SMOOTHED(76, 11)) << 0)
+((SMOOTHED(-11, -1) < SMOOTHED(-14, 1)) << 0)
 ;
     desc[63] =
-((SMOOTHED(-22, -12) < SMOOTHED(15, 12)) << 7)
+((SMOOTHED(4, -1) < SMOOTHED(-6, 6)) << 7)
 +
-((SMOOTHED(-8, -17) < SMOOTHED(-31, 30)) << 6)
+((SMOOTHED(-16, 8) < SMOOTHED(3, 5)) << 6)
 +
-((SMOOTHED(-23, 29) < SMOOTHED(-29, 39)) << 5)
+((SMOOTHED(11, -1) < SMOOTHED(0, 17)) << 5)
 +
-((SMOOTHED(-4, 16) < SMOOTHED(72, -34)) << 4)
+((SMOOTHED(-10, -16) < SMOOTHED(0, -8)) << 4)
 +
-((SMOOTHED(5, 24) < SMOOTHED(25, 20)) << 3)
+((SMOOTHED(-7, -23) < SMOOTHED(1, 0)) << 3)
 +
-((SMOOTHED(-1, 5) < SMOOTHED(0, -13)) << 2)
+((SMOOTHED(-21, -8) < SMOOTHED(0, -3)) << 2)
 +
-((SMOOTHED(-2, 15) < SMOOTHED(-26, -32)) << 1)
+((SMOOTHED(-15, -14) < SMOOTHED(-2, -9)) << 1)
 +
-((SMOOTHED(4, -8) < SMOOTHED(38, 3)) << 0)
+((SMOOTHED(5, -8) < SMOOTHED(-14, 4)) << 0)
 ;
 #undef SMOOTHED

@@ -7,11 +7,13 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <fstream>
 #include "grief/grief.h"
-#include "unistd.h"
+
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
+
+#include <unistd.h>
 
 #define CROSSCHECK true 
 #define VERTICAL_LIMIT 100
@@ -43,13 +45,14 @@ TRating griefRating[1024];
 
 std::string CURRENT_DIR = get_current_dir_name();
 
+
 int time0,time1,time2,time3,time4,time5,time6;
 
 int compare(const void * a, const void * b)
 {
-  if ( (*(TRating*)a).value <  (*(TRating*)b).value ) return +1;
-  if ( (*(TRating*)a).value >  (*(TRating*)b).value ) return -1;
-  return 0;
+	if ( (*(TRating*)a).value <  (*(TRating*)b).value ) return +1;
+	if ( (*(TRating*)a).value >  (*(TRating*)b).value ) return -1;
+	return 0;
 }
 
 void generateNew()
@@ -60,8 +63,8 @@ void generateNew()
 	int y2[512];
 	int xWindow = WINDOW_SIZE;
 	int yWindow = WINDOW_SIZE;
-	
-	FILE* file = fopen((CURRENT_DIR +"/tools/grief/test_pairs.txt").c_str(),"r+");
+
+	FILE* file = fopen( (CURRENT_DIR + "/tools/grief/test_pairs.txt").c_str(), "r+");
 	
 	for (int i = 0;i<512;i++){
 		fscanf(file,"%i %i %i %i\n",&x1[i],&y1[i],&x2[i],&y2[i]);
@@ -70,7 +73,7 @@ void generateNew()
 	
 	fclose(file);
 
-	file = fopen((CURRENT_DIR +"/tools/grief/pair_stats.txt").c_str(),"w");
+	file = fopen( (CURRENT_DIR + "/tools/grief/pair_stats.txt").c_str(), "w");
 	for (int i = 0;i<griefDescriptorLength;i++){
 		fprintf(file,"%i %i %i %i %i\n",x1[i],y1[i],x2[i],y2[i],griefRating[i].value);
 	}
@@ -85,21 +88,27 @@ void generateNew()
 	}
 	sum=sum/griefDescriptorLength;
 
-	//exchange 10 comparisons by 10 random ones
-	/* 
-	 * #############    Differential Evolution    #############
-	 */
+	// exchange 10 comparisons by 10 random ones
 
-	char buff[FILENAME_MAX];
-    getcwd(buff, FILENAME_MAX);
-    string current_working_dir(buff);
+	// for (int i = griefDescriptorLength-numExchange;i<griefDescriptorLength;i++){
+	// 	int id = griefRating[i].id;
+	// 	x1[id] = rand()%xWindow-xWindow/2;
+	// 	y1[id] = rand()%yWindow-yWindow/2;
+	// 	x2[id] = rand()%xWindow-xWindow/2;
+	// 	y2[id] = rand()%yWindow-yWindow/2;
+	// }
 
+	// file = fopen("/home/samuel/Dev/Python/GRIEF-DE/tools/grief/test_pairs.txt","w");
+	// for (int i = 0;i<512;i++){
+	// 	fprintf(file,"%i %i %i %i\n",x1[i],y1[i],x2[i],y2[i]);
+	// }
+
+	// //printf("%i %i %.3f\n",matchingFailures,matchingTests,(float)matchingFailures/matchingTests); 
+	// printf("Population fitness: %i %.3f\n",sum,(float)matchingFailures/matchingTests*100.0);
+	// fclose(file);
+	
     string command;
-
-	if(CURRENT_DIR.find("adriel") != std::string::npos)
-		command = "python3 " + current_working_dir + string("/pyscripts/de.py");
-    else
-		command = current_working_dir + string("/pyscripts/env/bin/python") + string(" ") + current_working_dir + string("/pyscripts/de.py");
+    command = "/usr/bin/python3 " + CURRENT_DIR + "/pyscripts/de.py";
 
 	char arrcommand [command.length() + 1];
 
@@ -107,6 +116,7 @@ void generateNew()
 	system(arrcommand);
 
 	printf("Population fitness: %i %.3f\n",sum,(float)matchingFailures/matchingTests*100.0);
+
 }
 
 int getTime()
@@ -216,7 +226,7 @@ int main(int argc, char ** argv)
 	int timer = getTime();
 	
 	do{
-		sprintf(filename,"/home/adriel/repos/GRIEF-DE/%s/season_%02i/%09i.bmp",argv[1],numSeasons,numLocations);
+		sprintf(filename, (CURRENT_DIR + "/%s/season_%02i/%09i.bmp").c_str(), argv[1],numSeasons,numLocations);
 		std::cout << filename << std::endl;
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 		if (tmpIm.data != NULL)
@@ -238,7 +248,7 @@ int main(int argc, char ** argv)
 	
 	/*check the number of locations*/
 	do{
-		sprintf(filename,"/home/adriel/repos/GRIEF-DE/%s/season_%02i/%09i.bmp",argv[1],0,numLocations++);
+		sprintf(filename, (CURRENT_DIR + "/%s/season_%02i/%09i.bmp").c_str(), argv[1],0,numLocations++);
 		tmpIm =  imread(filename, cv::IMREAD_COLOR);
 	}while (numLocations < MAX_LOCATIONS && tmpIm.data != NULL);
 
@@ -254,7 +264,7 @@ int main(int argc, char ** argv)
 	{
 		for (int j=0;j<numLocations;j++)
 		{
-			sprintf(filename,"/home/adriel/repos/GRIEF-DE/%s/season_%02i/%09i.bmp",argv[1],i,j);
+			sprintf(filename,(CURRENT_DIR + "/%s/season_%02i/%09i.bmp").c_str(), argv[1],i,j);
 			tmpIm =  imread(filename, cv::IMREAD_COLOR);
 			if (tmpIm.data == NULL) {
 				fprintf(stderr,"ERROR: Image %s could not be loaded. \n",filename);
@@ -291,7 +301,7 @@ int main(int argc, char ** argv)
 	global = global*0;
 	Mat submat,griefw;
 
-	//GRIEF-DE evolution step 1: reset the comparison ratings
+	//GRIEF evolution step 1: reset the comparison ratings
 	vector<DMatch> matches, inliers_matches,working_matches;
 	int matcher = 0;
 	for (int i = 0;i<1024;i++){
@@ -301,7 +311,7 @@ int main(int argc, char ** argv)
 	
 	for (int location = 0;location<numLocations;location++){
 		for (int i=0;i<numSeasons;i++){
-			sprintf(filename,"/home/adriel/repos/GRIEF-DE/%s/season_%02i/%09i.bmp",argv[1],i,location);
+			sprintf(filename,(CURRENT_DIR + "/%s/season_%02i/%09i.bmp").c_str(),argv[1],i,location);
 			im[i] =  imread(filename, cv::IMREAD_COLOR);
 			img[i] = imread(filename, cv::IMREAD_GRAYSCALE);
 			if(img[i].empty())
@@ -322,6 +332,7 @@ int main(int argc, char ** argv)
 		Ptr<cv::xfeatures2d::StarDetector>detector = cv::xfeatures2d::StarDetector::create(45,0,10,8,5);		//TODO make this selectable
 		//FakeFeatureDetector detector;		//TODO make this selectable
 		//BRISK detector(0,4);
+		
 		
 		Ptr<cv::xfeatures2d::GriefDescriptorExtractor> descriptor = cv::xfeatures2d::GriefDescriptorExtractor::create(griefDescriptorLength/8);
 		time0 = getTime();
@@ -425,6 +436,7 @@ int main(int argc, char ** argv)
 						}else{
 							eff = +strength;
 						}
+
 						for (int o = 0;o<griefDescriptorLength/8;o++){
 							unsigned char b = descriptors[ik].at<uchar>(i1,o)^descriptors[jk].at<uchar>(i2,o);
 							unsigned char oo = 128;

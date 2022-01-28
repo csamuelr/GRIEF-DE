@@ -151,7 +151,7 @@
 +
 ((SMOOTHED(2, 25) < SMOOTHED(2, 23)) << 1)
 +
-((SMOOTHED(-9, 18) < SMOOTHED(4, 0)) << 0)
+((SMOOTHED(3, -7) < SMOOTHED(-19, -15)) << 0)
 ;
     desc[9] =
 ((SMOOTHED(-9, 15) < SMOOTHED(-9, 14)) << 7)
