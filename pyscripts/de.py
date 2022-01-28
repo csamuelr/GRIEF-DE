@@ -4,7 +4,7 @@ from numpy.random import exponential
 from population   import Individual
 from population   import Population
 from evfunctions  import Evaluation
-from numpy        import array, array2string
+from numpy        import array
 from numpy        import loadtxt
 from numpy        import savetxt
 from heapq        import heappop
@@ -35,7 +35,7 @@ class DifferentialEvolution:
 			self.__crosstype = algorithm.split('_')[-1]
 
 		else:
-			print('\nERROR:\n\tDE algortihm \'{}\' is not available.'.format(algorithm))
+			print('\nERROR:\n\tDE algorithm \'{}\' is not available.'.format(algorithm))
 			exit(-1)
 
 		
@@ -276,22 +276,18 @@ if __name__ == '__main__':
 		algorithm='rand_1_bin'
 	)
 
-	print("Aplicando processo evolutivo...")
 	de.evolve()	
 	new_individuals = de.get_all_solutions()
 
-	population_data = loadtxt(os.path.join('tools', 'grief', 'funciona_caralhooo.txt'), delimiter=' ', dtype=int)
+	population_data = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), delimiter=' ', dtype=int)
 	population_data = list(population_data[:-10])
 
 	for new in new_individuals:
 		population_data.append(array(new.get(), dtype=int))
 	
-	print(population_data)
 	for i, indv in enumerate(population_data):
 		population_data[i] = ' '.join(map(str, indv))
 
-	print("Salvando nova população...")
-	savetxt(os.path.join('tools', 'grief', 'test_pairs_test.txt'), population_data, delimiter=' ', fmt='%s')
+	savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), population_data, delimiter=' ', fmt='%s')
 
-	print("Ok.")
 	

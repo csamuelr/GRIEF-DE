@@ -8,12 +8,14 @@
 #include <fstream>
 #include "grief/grief.h"
 
+#include <string.h>
+#include <unistd.h>
+
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/features2d.hpp"
 #include "opencv2/xfeatures2d.hpp"
 
-#include <Python.h>
 
 #define CROSSCHECK true 
 #define VERTICAL_LIMIT 100
@@ -66,8 +68,7 @@ void generateNew()
 	for (int i = 0;i<512;i++){
 		fscanf(file,"%i %i %i %i\n",&x1[i],&y1[i],&x2[i],&y2[i]);
 	}
-	
-	
+		
 	fclose(file);
 
 	file = fopen("/home/samuel/Dev/Python/GRIEF-DE/tools/grief/pair_stats.txt","w");
@@ -86,33 +87,26 @@ void generateNew()
 	sum=sum/griefDescriptorLength;
 
 	// exchange 10 comparisons by 10 random ones
+	
+	
+	/* 
+	 * #############    Differential Evolution    #############
+	 */
 
-	// for (int i = griefDescriptorLength-numExchange;i<griefDescriptorLength;i++){
-	// 	int id = griefRating[i].id;
-	// 	x1[id] = rand()%xWindow-xWindow/2;
-	// 	y1[id] = rand()%yWindow-yWindow/2;
-	// 	x2[id] = rand()%xWindow-xWindow/2;
-	// 	y2[id] = rand()%yWindow-yWindow/2;
-	// }
+	char buff[FILENAME_MAX];
+    getcwd(buff, FILENAME_MAX);
+    string current_working_dir(buff);
 
-	// file = fopen("/home/samuel/Dev/Python/GRIEF-DE/tools/grief/test_pairs.txt","w");
-	// for (int i = 0;i<512;i++){
-	// 	fprintf(file,"%i %i %i %i\n",x1[i],y1[i],x2[i],y2[i]);
-	// }
+    string command;
+    command = current_working_dir + string("/pyscripts/env/bin/python") + string(" ") + current_working_dir + string("/pyscripts/de.py");
 
-	char file_path [] = "../pyscripts/de.py";
-	FILE * de_file;
+	char arrcommand [command.length() + 1];
 
-	Py_Initialize();
+	strcpy(arrcommand, command.c_str());
+	system(arrcommand);
 
-	de_file = _Py_fopen(file_path, 'r');
-	PyRun_SimpleFile(de_file, file_path); 
-
-	Py_Finalize();
-
-	//printf("%i %i %.3f\n",matchingFailures,matchingTests,(float)matchingFailures/matchingTests); 
 	printf("Population fitness: %i %.3f\n",sum,(float)matchingFailures/matchingTests*100.0);
-	// fclose(file);
+
 }
 
 int getTime()

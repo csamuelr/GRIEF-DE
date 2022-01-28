@@ -190,7 +190,7 @@
     desc[11] =
 ((SMOOTHED(-14, 8) < SMOOTHED(-14, 9)) << 7)
 +
-((SMOOTHED(20, 23) < SMOOTHED(2, 1)) << 6)
+((SMOOTHED(17, 0) < SMOOTHED(22, -20)) << 6)
 +
 ((SMOOTHED(20, -18) < SMOOTHED(20, -14)) << 5)
 +
@@ -253,7 +253,7 @@
 +
 ((SMOOTHED(1, -22) < SMOOTHED(2, -22)) << 1)
 +
-((SMOOTHED(-3, 17) < SMOOTHED(7, 14)) << 0)
+((SMOOTHED(4, -1) < SMOOTHED(22, 6)) << 0)
 ;
     desc[15] =
 ((SMOOTHED(-21, 4) < SMOOTHED(-17, 4)) << 7)
@@ -262,7 +262,7 @@
 +
 ((SMOOTHED(7, -18) < SMOOTHED(7, -21)) << 5)
 +
-((SMOOTHED(-5, 6) < SMOOTHED(-5, 10)) << 4)
+((SMOOTHED(-11, 2) < SMOOTHED(-18, -19)) << 4)
 +
 ((SMOOTHED(3, -5) < SMOOTHED(1, -5)) << 3)
 +

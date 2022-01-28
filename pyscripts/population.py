@@ -54,7 +54,7 @@ class Population:
 
 	def create(self):
 		
-		population_data = loadtxt(os.path.join('tools', 'grief', 'pair_stats.txt'), delimiter=' ', dtype=int)
+		population_data = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'pair_stats.txt'), delimiter=' ', dtype=int)
 		
 		for i in population_data[-self.__np:]:    
 			individual = Individual()
