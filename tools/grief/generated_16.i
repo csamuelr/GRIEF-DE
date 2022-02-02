@@ -1,58 +1,58 @@
 // Code generated with '$ grief/generate_code.py grief/test_pairs.txt 16'
 #define SMOOTHED(y,x) smoothedSum(sum, pt, y, x)
     desc[0] =
-((SMOOTHED(1, -10) < SMOOTHED(2, -10)) << 7)
+((SMOOTHED(-5, -1) < SMOOTHED(-7, -1)) << 7)
 +
-((SMOOTHED(-15, -23) < SMOOTHED(-16, -22)) << 6)
+((SMOOTHED(1, 14) < SMOOTHED(22, 12)) << 6)
 +
-((SMOOTHED(8, -24) < SMOOTHED(6, -22)) << 5)
+((SMOOTHED(12, 4) < SMOOTHED(6, 3)) << 5)
 +
-((SMOOTHED(-17, -19) < SMOOTHED(-17, -20)) << 4)
+((SMOOTHED(3, -19) < SMOOTHED(4, -19)) << 4)
 +
-((SMOOTHED(13, -13) < SMOOTHED(13, -12)) << 3)
+((SMOOTHED(-14, 20) < SMOOTHED(-15, 23)) << 3)
 +
-((SMOOTHED(13, -22) < SMOOTHED(13, -23)) << 2)
+((SMOOTHED(9, 12) < SMOOTHED(9, 10)) << 2)
 +
-((SMOOTHED(3, 23) < SMOOTHED(1, 24)) << 1)
+((SMOOTHED(3, -1) < SMOOTHED(1, -5)) << 1)
 +
-((SMOOTHED(20, -10) < SMOOTHED(21, -10)) << 0)
+((SMOOTHED(-18, -9) < SMOOTHED(21, 15)) << 0)
 ;
     desc[1] =
-((SMOOTHED(7, 14) < SMOOTHED(6, 14)) << 7)
+((SMOOTHED(-23, 16) < SMOOTHED(-23, 1)) << 7)
 +
-((SMOOTHED(8, -3) < SMOOTHED(7, -4)) << 6)
+((SMOOTHED(-5, 19) < SMOOTHED(-5, -7)) << 6)
 +
-((SMOOTHED(2, -21) < SMOOTHED(2, -22)) << 5)
+((SMOOTHED(16, 0) < SMOOTHED(-18, 24)) << 5)
 +
-((SMOOTHED(-22, 2) < SMOOTHED(-21, 1)) << 4)
+((SMOOTHED(-22, -22) < SMOOTHED(-6, -20)) << 4)
 +
-((SMOOTHED(-3, -16) < SMOOTHED(-5, -17)) << 3)
+((SMOOTHED(-3, -7) < SMOOTHED(-5, -9)) << 3)
 +
-((SMOOTHED(-3, -4) < SMOOTHED(-5, -3)) << 2)
+((SMOOTHED(-3, -4) < SMOOTHED(0, -3)) << 2)
 +
-((SMOOTHED(-6, -10) < SMOOTHED(-3, -10)) << 1)
+((SMOOTHED(0, -19) < SMOOTHED(22, -17)) << 1)
 +
-((SMOOTHED(4, 1) < SMOOTHED(6, 0)) << 0)
+((SMOOTHED(-5, 4) < SMOOTHED(-9, 1)) << 0)
 ;
     desc[2] =
-((SMOOTHED(0, 8) < SMOOTHED(0, 9)) << 7)
+((SMOOTHED(0, 8) < SMOOTHED(-2, -23)) << 7)
 +
-((SMOOTHED(-15, -25) < SMOOTHED(-14, -23)) << 6)
+((SMOOTHED(3, 13) < SMOOTHED(7, -23)) << 6)
 +
-((SMOOTHED(-16, -18) < SMOOTHED(-18, -18)) << 5)
+((SMOOTHED(0, 3) < SMOOTHED(1, 4)) << 5)
 +
-((SMOOTHED(-7, 4) < SMOOTHED(-7, 3)) << 4)
+((SMOOTHED(0, -6) < SMOOTHED(-7, -7)) << 4)
 +
 ((SMOOTHED(25, -9) < SMOOTHED(24, -6)) << 3)
 +
-((SMOOTHED(2, -10) < SMOOTHED(2, -8)) << 2)
+((SMOOTHED(2, -13) < SMOOTHED(2, -7)) << 2)
 +
 ((SMOOTHED(25, 25) < SMOOTHED(22, 24)) << 1)
 +
 ((SMOOTHED(-5, 6) < SMOOTHED(-5, 8)) << 0)
 ;
     desc[3] =
-((SMOOTHED(-11, -25) < SMOOTHED(-8, -25)) << 7)
+((SMOOTHED(13, -8) < SMOOTHED(9, -7)) << 7)
 +
 ((SMOOTHED(-10, -11) < SMOOTHED(-11, -11)) << 6)
 +
@@ -151,7 +151,7 @@
 +
 ((SMOOTHED(2, 25) < SMOOTHED(2, 23)) << 1)
 +
-((SMOOTHED(3, -7) < SMOOTHED(-19, -15)) << 0)
+((SMOOTHED(-18, -5) < SMOOTHED(-20, -15)) << 0)
 ;
     desc[9] =
 ((SMOOTHED(-9, 15) < SMOOTHED(-9, 14)) << 7)

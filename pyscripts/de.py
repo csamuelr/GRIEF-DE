@@ -22,13 +22,20 @@ class DifferentialEvolution:
 		self.__f          = f
 		self.__algorithm  = None
 		self.__evfunc     = Evaluation()
-		self.__population = []
+		self.__population = Population(np=self.__np).create()
 		self.__temporaryp = []
 		self.__crosstype  = None
 		self.__best_solution = None
 		self.__all_solutions = []
 		self.__all_best_solutions = []
 		self.__total_time = None
+		self.__population_data = []
+		
+
+		for individual in self.__population:
+			self.__population_data.append(individual.get())
+
+		self.__previous_fit = self.evaluate(0, self.__population_data[0])
 
 		if callable(getattr(self, algorithm, None)):
 			self.__algorithm = getattr(self, algorithm, None)
@@ -51,16 +58,61 @@ class DifferentialEvolution:
 
 		self.__population = ordered
 	
+	def evaluate(self, i, u):
+		
+		aux = self.__population_data[i]
+		self.__population_data[i] = u
+		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
 
-	def evaluate(self):
+		for i in [16, 32, 64]:
+			cmd = "python3 ./tools/grief/generate_code.py tools/grief/test_pairs.txt " +  str(i) + " >tools/grief/generated_" + str(i) + ".i"
+			os.system(cmd)
 		
-		for individual in self.__population:
-			fit = self.__evfunc.compute(individual.get())
-			individual.set_fit(fit)
+		#Função de avaliação
+		cmd = "./tools/evaluate GRIEF-datasets/michigan"
+		os.system(cmd)
+	
+		evaluation = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'evaluation.txt'), delimiter=' ', dtype=int)
+		return int(evaluation)
+
+	def evaluate_select(self, i, u):
+		print(f'teste {i + 1}')
+		aux = self.__population_data[i]
+		self.__population_data[i] = u
+
+		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
+
+		for idx in [16, 32, 64]:
+			cmd = "python3 ./tools/grief/generate_code.py tools/grief/test_pairs.txt " +  str(idx) + " >tools/grief/generated_" + str(idx) + ".i"
+			os.system(cmd)
 		
-		for t_individual in self.__temporaryp:
-			fit = self.__evfunc.compute(t_individual.get())
-			t_individual.set_fit(fit)
+		os.system("./tools/generate_eval.sh ")
+
+		#Função de avaliação
+		cmd = "./tools/evaluate GRIEF-datasets/michigan"
+		os.system(cmd)
+
+
+		evaluation = int(loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'evaluation.txt'), delimiter=' ', dtype=int))
+		
+		
+		if(self.__previous_fit > evaluation):
+			self.__population_data[i] = aux
+			savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
+
+			for idx in [16, 32, 64]:
+				cmd = "python3 ./tools/grief/generate_code.py tools/grief/test_pairs.txt " +  str(idx) + " >tools/grief/generated_" + str(idx) + ".i"
+				os.system(cmd)
+
+			os.system("./tools/generate_eval.sh ")
+
+			#Função de avaliação
+			cmd = "./tools/evaluate GRIEF-datasets/michigan"
+			os.system(cmd)
+		else:
+			print(f'foi um novo aew {u}. O previous foi {self.__previous_fit} e o novo foi {evaluation}')
+			self.__previous_fit = evaluation
+			return
 
 	def evolve(self):
 		
@@ -68,10 +120,7 @@ class DifferentialEvolution:
 
 		self.__all_solutions = []
 		self.__all_best_solutions = []
-
-		population = Population(np=self.__np)
-
-		self.__population = population.create() 
+		
 
 
 		for i, individual in enumerate(self.__population):
@@ -84,8 +133,11 @@ class DifferentialEvolution:
 
 			u = self.crossover(individual, mutated_vector)
 
-			new_individual.set(array(u))
-			self.__temporaryp.append(new_individual)
+			# selection
+			self.evaluate_select(i, u)
+
+			
+			
 
 		self.__all_solutions = self.__temporaryp
 
@@ -109,9 +161,9 @@ class DifferentialEvolution:
 		for j, value in enumerate(individual.get()):
 			r = float(format(call(), '.1f'))
 			if r < self.__cr or j == J:
-				u.append(mutated_vector[j])
+				u.append(int(mutated_vector[j]))
 			else:
-				u.append(value)
+				u.append(int(value))
 
 		return u
 
@@ -310,9 +362,10 @@ class DifferentialEvolution:
 
 if __name__ == '__main__':
 
+	
 
 	de = DifferentialEvolution(
-		np=10,
+		np=512,
 		cr=0.7, 
 		f=0.8, 
 		algorithm='rand_1_bin'
@@ -320,17 +373,4 @@ if __name__ == '__main__':
 
 	de.evolve()	
 	new_individuals = de.get_all_solutions()
-
-	population_data = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), delimiter=' ', dtype=int)
-	population_data = list(population_data[:-10])
-
-	for new in new_individuals:
-		population_data.append(array(new.get(), dtype=int))
-	
-	for i, indv in enumerate(population_data):
-		population_data[i] = ' '.join(map(str, indv))
-
-	savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), population_data, delimiter=' ', fmt='%s')
-
-	exit(0)
 	

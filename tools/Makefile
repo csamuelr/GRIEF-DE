@@ -24,6 +24,9 @@ match_all: match_all.cpp grief/grief.cpp
 evolve_grief: evolve_grief.cpp grief/grief.cpp 
 	$(CC) evolve_grief.cpp $(CFLAGS) $(LDFLAGS) -o $@
  
+evaluate: evaluate.cpp grief/grief.cpp 
+	$(CC) evaluate.cpp $(CFLAGS) $(LDFLAGS) -o $@
+	
 annotate: annotate.cpp grief/grief.cpp 
 	$(CC) annotate.cpp $(CFLAGS) $(LDFLAGS) -o $@ 
 

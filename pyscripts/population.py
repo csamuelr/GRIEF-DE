@@ -51,6 +51,7 @@ class Population:
 	def __init__(self, np):
 		self.__np = np
 		self.__individuals = []
+		self.__evaluation = -1000000000000
 
 	def create(self):
 		
