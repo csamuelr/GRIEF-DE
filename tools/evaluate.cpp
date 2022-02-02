@@ -75,7 +75,6 @@ void generateNew()
 	FILE* file = fopen( (CURRENT_DIR + "/tools/grief/evaluation.txt").c_str(), "w");
 	
 	fprintf(file,"%i",sum);
-	std::cout << sum << std::endl;
 	fclose(file);
 
 	file = fopen( (CURRENT_DIR + "/tools/grief/test_pairs.txt").c_str(), "r+");
