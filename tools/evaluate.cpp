@@ -91,6 +91,7 @@ void generateNew()
 		fprintf(file,"%i %i %i %i %i\n",x1[i],y1[i],x2[i],y2[i],griefRating[i].value);
 	}
 	fclose(file);
+	printf("Population fitness: %i %.3f\n",sum,(float)matchingFailures/matchingTests*100.0);
 }
 
 int getTime()
@@ -173,6 +174,7 @@ void distinctiveMatch(const Mat& descriptors1, const Mat& descriptors2, vector<D
 		}
 
 	}
+	
 
 }
 

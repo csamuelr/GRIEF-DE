@@ -11,7 +11,7 @@ from heapq        import heappop
 from heapq        import heappush
 from time         import time
 from sys          import exit
-
+import random
 import os
 
 class DifferentialEvolution:
@@ -30,7 +30,8 @@ class DifferentialEvolution:
 		self.__all_best_solutions = []
 		self.__total_time = None
 		self.__population_data = []
-		
+		self.__aux_list = []
+		self.__selected_to_change = random.sample(range(0, 511), 10)
 
 		for individual in self.__population:
 			self.__population_data.append(individual.get())
@@ -69,27 +70,21 @@ class DifferentialEvolution:
 			os.system(cmd)
 		
 		#Função de avaliação
-		cmd = "./tools/evaluate GRIEF-datasets/michigan"
+		cmd = "./tools/evaluate GRIEF-datasets/planetarium"
 		os.system(cmd)
 	
 		evaluation = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'evaluation.txt'), delimiter=' ', dtype=int)
 		return int(evaluation)
 
-	def evaluate_select(self, i, u):
-		print(f'teste {i + 1}')
-		aux = self.__population_data[i]
-		self.__population_data[i] = u
-
+	def evaluate_select(self):
+		os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/pair_stats.bak")
+		os.system("cp store.tmp store.bak")
 		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
-
-		for idx in [16, 32, 64]:
-			cmd = "python3 ./tools/grief/generate_code.py tools/grief/test_pairs.txt " +  str(idx) + " >tools/grief/generated_" + str(idx) + ".i"
-			os.system(cmd)
 		
 		os.system("./tools/generate_eval.sh ")
 
 		#Função de avaliação
-		cmd = "./tools/evaluate GRIEF-datasets/michigan"
+		cmd = "./tools/evaluate GRIEF-datasets/planetarium| grep fitness > store.tmp"
 		os.system(cmd)
 
 
@@ -97,22 +92,26 @@ class DifferentialEvolution:
 		
 		
 		if(self.__previous_fit > evaluation):
-			self.__population_data[i] = aux
+			os.system("cp store.bak store.tmp")
+			counter = 0
+			for i in self.__selected_to_change:
+				self.__population_data[i] = self.__aux_list[counter]
+				counter+=1
+			self.__aux_list = []
+			
+			os.system("cp ./tools/grief/pair_stats.bak ./tools/grief/pair_stats.txt")
 			savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
-
-			for idx in [16, 32, 64]:
-				cmd = "python3 ./tools/grief/generate_code.py tools/grief/test_pairs.txt " +  str(idx) + " >tools/grief/generated_" + str(idx) + ".i"
-				os.system(cmd)
 
 			os.system("./tools/generate_eval.sh ")
 
-			#Função de avaliação
-			cmd = "./tools/evaluate GRIEF-datasets/michigan"
-			os.system(cmd)
+			print(f'a anterior foi {self.__previous_fit} e a nova  foi {evaluation} não mudou')
 		else:
-			print(f'foi um novo aew {u}. O previous foi {self.__previous_fit} e o novo foi {evaluation}')
+			print(f'a anterior foi {self.__previous_fit} e a nova  foi {evaluation} mudou')
 			self.__previous_fit = evaluation
+			self.__aux_list = []
 			return
+
+		
 
 	def evolve(self):
 		
@@ -121,9 +120,10 @@ class DifferentialEvolution:
 		self.__all_solutions = []
 		self.__all_best_solutions = []
 		
+		
 
-
-		for i, individual in enumerate(self.__population):
+		
+		for i in self.__selected_to_change:
 			# mutation
 			mutated_vector = self.mutate(i)
 
@@ -131,10 +131,13 @@ class DifferentialEvolution:
 			new_individual = Individual()
 			new_individual.create()
 
-			u = self.crossover(individual, mutated_vector)
+			u = self.crossover(self.__population[i], mutated_vector)
+			self.__aux_list.append(self.__population_data[i])
+			self.__population_data[i] = u
 
-			# selection
-			self.evaluate_select(i, u)
+		
+		# selection
+		self.evaluate_select()
 
 			
 			
@@ -370,7 +373,6 @@ if __name__ == '__main__':
 		f=0.8, 
 		algorithm='rand_1_bin'
 	)
-
 	de.evolve()	
 	new_individuals = de.get_all_solutions()
 	
