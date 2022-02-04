@@ -6,10 +6,10 @@ e=0;
 #cp tools/grief/test_pairs.brief tools/grief/test_pairs.txt;
 
 #train a given number or generations
-for i in $(seq 987 $2);
+for i in $(seq 1 $2);
 do
 	f=$e;
-	python3 ./pyscripts/de.py > /dev/null
+	python3 ./pyscripts/de.py $i > /dev/null
 	e=$(cat store.tmp|cut -f 3 -d ' ');
 	r=$(cat store.tmp|cut -f 4 -d ' ');
 	echo Population $i Fitness $e Error $r;

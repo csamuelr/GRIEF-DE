@@ -1,6 +1,9 @@
+from operator import gt
 from random import randrange
 from numpy import array
 from numpy import loadtxt
+from warnings import warn
+from copy import deepcopy
 
 import os 
 
@@ -11,6 +14,8 @@ class Individual:
 		self.__gene  = []
 		self.xwindow = 48
 		self.ywindow = 48
+		self.linf	 = -25
+		self.lsup	 = 25
 
 	def create(self):
 	
@@ -51,7 +56,6 @@ class Population:
 	def __init__(self, np):
 		self.__np = np
 		self.__individuals = []
-		self.__evaluation = -1000000000000
 
 	def create(self):
 		
@@ -68,5 +72,20 @@ class Population:
 	def get(self):
 		return self.__individuals
 
-	def __repr__(self) -> str:
-		return 'Population Size: {}'.format(len(self.__individuals))
+	def opposite(self, individuals):
+
+		oppindividuals = []
+		
+		for i in individuals:
+			
+			gtemp = []
+			for x in i.get():
+				xx = i.linf + i.lsup - x
+				gtemp.append(xx)
+
+			oppindv = Individual()
+			oppindv.set(array(gtemp))
+			oppindv.set_fit(None)
+			oppindividuals.append(oppindv)
+
+		return oppindividuals
