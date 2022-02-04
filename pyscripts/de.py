@@ -10,7 +10,7 @@ from heapq        import heappop
 from heapq        import heappush
 from time         import time
 from sys          import exit, argv
-
+from copy 		  import deepcopy
 import random
 import os
 
@@ -70,13 +70,13 @@ class DifferentialEvolution:
 
 
 	def opposite_evaluate(self):
-		
+			
 		opposite_data = []
-		for individual in self.__opposite:
+		for individual in self.__population:
 			opposite_data.append(individual.get())
 
-		# os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/pair_stats.bak")
-		# os.system("cp store.tmp store.bak")
+		os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/pair_stats.bak")
+		os.system("cp store.tmp store.bak")
 
 		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), opposite_data, delimiter=' ', fmt='%s')
 
@@ -86,13 +86,13 @@ class DifferentialEvolution:
 		cmd = "./tools/evaluate GRIEF-datasets/planetarium"
 		os.system(cmd)
 
-		os.system("cp ./tools/grief/test_pairs.txt ./tools/grief/opposite_test_pairs.txt")
-		os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/opposite_pair_stats.txt")
+		# os.system("cp ./tools/grief/test_pairs.txt ./tools/grief/opposite_test_pairs.txt")
+		# os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/opposite_pair_stats.txt")
 
 		
-		# restaura pair_stats
-		os.system("cp ./tools/grief/test_pairs.bak ./tools/grief/test_pairs.txt")
-		os.system("cp ./tools/grief/pair_stats.bak ./tools/grief/pair_stats.txt")
+		# # restaura pair_stats
+		# os.system("cp ./tools/grief/test_pairs.bak ./tools/grief/test_pairs.txt")
+		# os.system("cp ./tools/grief/pair_stats.bak ./tools/grief/pair_stats.txt")
 		
 
 
@@ -124,10 +124,14 @@ class DifferentialEvolution:
 	def select_individuals(self):
 
 		key, n = self.__criteria_of_change
+
+		self.__selected_to_change['indexes'] = []
+		self.__selected_to_change['indv']    = []
+
 		if key == 'rand':
 			indexes = random.sample(range(0, 511), n)
 			self.__selected_to_change['indexes'] = indexes
-			self.__selected_to_change['indv'] = []
+
 			for i in indexes:
 				self.__selected_to_change['indv'].append(self.__population[i])
 		
@@ -149,41 +153,48 @@ class DifferentialEvolution:
 		###########################
 
 
-		if (g == 1 or self.__jr >= uniform()):
+		if g == 1: #or self.__jr >= uniform()
 			
 			# print("Entrando em Opposite-Based Learning")
 
-			self.__opposite = population.opposite(self.__population)
-			
+			# select individuals who will be used as opposite
+			self.select_individuals()
+
+			opposite_individuals = population.opposite(self.__selected_to_change['indv'])
+
+			for index, individual in zip(self.__selected_to_change['indexes'], opposite_individuals):
+				self.__population[index] = individual
+
+			e = self.evaluate()
 			# evaluate here
-			self.opposite_evaluate()
+			# self.opposite_evaluate()
 
-			opposite_population_data = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'opposite_pair_stats.txt'), delimiter=' ', dtype=int)
+			# opposite_population_data = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'opposite_pair_stats.txt'), delimiter=' ', dtype=int)
 
-			for individual, data in zip(self.__opposite, opposite_population_data):
-				individual.set(array(data[:-1]))
-				individual.set_fit(data[-1])
+			# for individual, data in zip(self.__opposite, opposite_population_data):
+			# 	individual.set(array(data[:-1]))
+			# 	individual.set_fit(data[-1])
 
-			temp = []
-			temp = self.__population
+			# temp = []
+			# temp = self.__population
 
-			for opindv in self.__opposite:
-				temp.append(opindv)
+			# for opindv in self.__opposite:
+			# 	temp.append(opindv)
 
-			new_population = []
-			new_population = self.heap_sort(temp)
+			# new_population = []
+			# new_population = self.heap_sort(temp)
 
-			new_population_data = []
-			for individual in new_population[:self.__np]:
-				new_population_data.append(individual.get())
+			# new_population_data = []
+			# for individual in new_population[:self.__np]:
+			# 	new_population_data.append(individual.get())
 			
-			# os.system("cp ./tools/grief/pair_stats.bak ./tools/grief/pair_stats.txt")
-			savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), new_population_data, delimiter=' ', fmt='%s')
-			os.system("./tools/generate_eval.sh ")
+			# # os.system("cp ./tools/grief/pair_stats.bak ./tools/grief/pair_stats.txt")
+			# savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), new_population_data, delimiter=' ', fmt='%s')
+			# os.system("./tools/generate_eval.sh ")
 
-			del(temp)
-			del(new_population)
-			del(new_population_data)
+			# del(temp)
+			# del(new_population)
+			# del(new_population_data)
 
 		###########################
 		else:
@@ -204,7 +215,7 @@ class DifferentialEvolution:
 				u = self.crossover(individual, mutated_vector)
 				new_individual.set(array(u))
 
-				self.__aux_list.append(individual)
+				self.__aux_list.append(new_individual)
 				
 				# self.__population_data[index] = u
 
@@ -458,9 +469,8 @@ class DifferentialEvolution:
 if __name__ == '__main__':
 
 
-	change_criteria = ['rand', 50]
+	change_criteria = ['worst', 20]
 	arg = int(argv[1])
-	print("Arg ", arg)
 
 	de = DifferentialEvolution(
 		np=512,
