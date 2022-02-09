@@ -1,0 +1,9 @@
+Testar
+	- substituir os piores individuos
+	- relaxar o critério de substituição
+		- se vai substituir os piores
+		- ou substituir aleatoriamente
+		- ou ainda combinar as duas formas
+
+	- uma situação intermediária que pode-se considerar quando a mé dia da população não for maior 
+		- selecionar os melhores individuos dentre os piores das duas populações (da geração anterior e a atual) 
