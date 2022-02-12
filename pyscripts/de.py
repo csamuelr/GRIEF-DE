@@ -9,19 +9,22 @@ from numpy        import loadtxt
 from numpy        import savetxt
 from heapq        import heappop
 from heapq        import heappush
+import numpy
 from time         import time
-from sys          import exit
+from sys          import exit,argv
 import random
 import os
 
 class DifferentialEvolution:
 
 	def __init__(self, np, cr, f, algorithm):
+		
 		self.__np         = np
 		self.__cr         = cr
 		self.__f          = f
 		self.__algorithm  = None
 		self.__evfunc     = Evaluation()
+		self.execution = 0
 		self.__population = Population(np=self.__np).create()
 		self.__temporaryp = []
 		self.__crosstype  = None
@@ -30,11 +33,13 @@ class DifferentialEvolution:
 		self.__all_best_solutions = []
 		self.__total_time = None
 		self.__population_data = []
-		self.__aux_list = []
-		self.__selected_to_change = random.sample(range(0, 511), 10)
+		prev_pop_with_eval = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'pair_stats.txt'), delimiter=' ', dtype=int)
+		idx_prev_worst_ind = numpy.argsort(prev_pop_with_eval[:,4])[:10]
+		self.__selected_to_change = idx_prev_worst_ind
 
 		for individual in self.__population:
 			self.__population_data.append(individual.get())
+		self.__new_population_data = self.__population_data
 
 		self.__previous_fit = self.evaluate(0, self.__population_data[0])
 
@@ -65,12 +70,10 @@ class DifferentialEvolution:
 		self.__population_data[i] = u
 		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
 
-		for i in [16, 32, 64]:
-			cmd = "python3 ./tools/grief/generate_code.py tools/grief/test_pairs.txt " +  str(i) + " >tools/grief/generated_" + str(i) + ".i"
-			os.system(cmd)
 		
+
 		#Função de avaliação
-		cmd = "./tools/evaluate GRIEF-datasets/planetarium"
+		cmd = "./tools/evaluate GRIEF-datasets/planetarium > /dev/null"
 		os.system(cmd)
 	
 		evaluation = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'evaluation.txt'), delimiter=' ', dtype=int)
@@ -79,9 +82,12 @@ class DifferentialEvolution:
 	def evaluate_select(self):
 		os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/pair_stats.bak")
 		os.system("cp store.tmp store.bak")
-		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
+
 		
-		os.system("./tools/generate_eval.sh ")
+		
+		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__new_population_data, delimiter=' ', fmt='%s')
+		
+		os.system("./tools/generate_eval.sh")
 
 		#Função de avaliação
 		cmd = "./tools/evaluate GRIEF-datasets/planetarium| grep fitness > store.tmp"
@@ -91,61 +97,58 @@ class DifferentialEvolution:
 		evaluation = int(loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'evaluation.txt'), delimiter=' ', dtype=int))
 		
 		
-		if(self.__previous_fit > evaluation):
+		if(0):
 			os.system("cp store.bak store.tmp")
 			counter = 0
-			for i in self.__selected_to_change:
-				self.__population_data[i] = self.__aux_list[counter]
-				counter+=1
-			self.__aux_list = []
 			
 			os.system("cp ./tools/grief/pair_stats.bak ./tools/grief/pair_stats.txt")
 			savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), self.__population_data, delimiter=' ', fmt='%s')
-
-			os.system("./tools/generate_eval.sh ")
-
+			self.__new_population_data = self.__population_data#faltou essa
+			os.system("./tools/generate_eval.sh  > /dev/null")
+			
+			self.__population = Population(np=self.__np).create()
 			print(f'a anterior foi {self.__previous_fit} e a nova  foi {evaluation} não mudou')
+
+			##Função de avaliação
+			#cmd = "./tools/evaluate GRIEF-datasets/planetarium| grep fitness > store.tmp"
+			#os.system(cmd)
+			
 		else:
 			print(f'a anterior foi {self.__previous_fit} e a nova  foi {evaluation} mudou')
 			self.__previous_fit = evaluation
-			self.__aux_list = []
-			return
+			self.__population_data = self.__new_population_data
+			self.__population = Population(np=self.__np).create()
 
 		
 
-	def evolve(self):
-		
-		ti = time()
+	def evolve(self, generations):
+		for g in range(generations):
+			ti = time()
 
-		self.__all_solutions = []
-		self.__all_best_solutions = []
-		
-		
+			self.__all_solutions = []
+			self.__all_best_solutions = []
 
-		
-		for i in self.__selected_to_change:
-			# mutation
-			mutated_vector = self.mutate(i)
+			for i in self.__selected_to_change:
+				# mutation
+				mutated_vector = self.mutate(i)
 
-			# crossover
-			new_individual = Individual()
-			new_individual.create()
+				u = self.crossover(self.__population[i], mutated_vector)
+				self.__new_population_data[i] = u
 
-			u = self.crossover(self.__population[i], mutated_vector)
-			self.__aux_list.append(self.__population_data[i])
-			self.__population_data[i] = u
 
-		
-		# selection
-		self.evaluate_select()
+			# selection
+			self.evaluate_select()
 
-			
-			
+			self.__all_solutions = self.__temporaryp
 
-		self.__all_solutions = self.__temporaryp
-
-		tf = time()	  
-		self.__total_time =  tf - ti
+			tf = time()	  
+			self.__total_time =  tf - ti
+			fitness = int(os.popen("cat store.tmp|cut -f 3 -d ' '").read())
+			error = float(os.popen("cat store.tmp|cut -f 4 -d ' '").read())
+			os.system("cp tools/grief/pair_stats.txt grief_history"+str(self.execution)+"/"+str(g+1).zfill(5)+"_"+str(fitness)+".txt")
+			prev_pop_with_eval = loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'pair_stats.txt'), delimiter=' ', dtype=int)
+			idx_prev_worst_ind = numpy.argsort(prev_pop_with_eval[:,4])[:10]
+			self.__selected_to_change = idx_prev_worst_ind
 
 	def mutate(self, i):
 		return self.__algorithm(i)
@@ -365,14 +368,19 @@ class DifferentialEvolution:
 
 if __name__ == '__main__':
 
+	generations = int(argv[1])
+	executions = int(argv[2])
 	
-
-	de = DifferentialEvolution(
+	for execution in range(2, executions):
+		os.system("./scripts/resetGrief.sh > /dev/null")
+		os.system("./tools/evaluate GRIEF-datasets/planetarium| grep fitness > store.tmp")
+		os.system("mkdir grief_history"+str(execution))
+		de = DifferentialEvolution(
 		np=512,
 		cr=0.7, 
 		f=0.8, 
 		algorithm='rand_1_bin'
-	)
-	de.evolve()	
-	new_individuals = de.get_all_solutions()
+		)
+		de.execution = execution
+		de.evolve(generations)
 	

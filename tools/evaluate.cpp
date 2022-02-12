@@ -66,7 +66,6 @@ void generateNew()
 
 	int pairs = 0;
 	int sum = 0;
-	qsort (griefRating,griefDescriptorLength,sizeof(TRating),compare);
 	for (int i = 0;i<griefDescriptorLength;i++){
 		 sum+=griefRating[i].value;
 	}

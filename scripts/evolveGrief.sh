@@ -6,7 +6,7 @@ e=0;
 #cp tools/grief/test_pairs.brief tools/grief/test_pairs.txt;
 
 #train a given number or generations
-for i in $(seq 987 $2);
+for i in $(seq 1940 $2);
 do
 	f=$e;
 	python3 ./pyscripts/de.py > /dev/null
