@@ -14,21 +14,26 @@ from copy 		  import deepcopy
 from random		  import sample
 import os
 
+
 class DifferentialEvolution:
 
-	def __init__(self, np, cr, f, algorithm, change, opposite_positions):
-		self.__np         = np
-		self.__cr         = cr
-		self.__f          = f
-		self.__criteria_of_change = change
-		self.__algorithm  = None
-		self.__population = []
-		self.__crosstype  = None
-		self.__total_time = None
-		self.__population_data = []
-		self.__aux_population = []
-		self.__selected_to_change = {'indv': [], 'indexes': []}
-		self.__opposite_positions = opposite_positions
+	def __init__(self, np, cr, f, ng, algorithm, change, obl, obl_gen_rate, obl_aggressive, obl_aggressive_rate):
+	
+		self.__np         		   = np
+		self.__cr         		   = cr
+		self.__f         		   = f
+		self.__ng		  		   = ng
+		self.__algorithm  		   = None
+		self.__population 		   = []
+		self.__crosstype  		   = None
+		self.__total_time 		   = None
+		self.__obl		  		   = obl
+		self.__obl_gen_rate	  	   = obl_gen_rate
+		self.__obl_aggressive 	   = obl_aggressive
+		self.__obl_aggressive_rate = obl_aggressive_rate
+		self.__aux_population 	   = []
+		self.__criteria_of_change  = change
+		self.__selected_to_change  = {'indv': [], 'indexes': []}
 	
 		if callable(getattr(self, algorithm, None)):
 			self.__algorithm = getattr(self, algorithm, None)
@@ -41,14 +46,14 @@ class DifferentialEvolution:
 	def heap_sort(self):
 
 		heap = []
-		for individual in self.__population:
+		for i, individual in enumerate(self.__population):
+			print(i, individual.get_fit())
 			heappush(heap, individual)
 
 		ordered = []
 		while heap:
 			ordered.append(heappop(heap))
 
-		ordered
 		self.__population = deepcopy(ordered)
 
 
@@ -58,7 +63,6 @@ class DifferentialEvolution:
 		for individual in self.__population:
 			population_data.append(individual.get())
 
-	
 		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), population_data, delimiter=' ', fmt='%s')
 		
 		#Função de avaliação
@@ -85,23 +89,22 @@ class DifferentialEvolution:
 		cmd = "./tools/evaluate GRIEF-datasets/planetarium| grep fitness > store.tmp"
 		os.system(cmd)
 
-		if not op:
+		if op:
 			return int(loadtxt(os.path.join(os.getcwd(), 'tools', 'grief', 'evaluation.txt'), delimiter=' ', dtype=int))
 		
 		return
 
-	def select_individuals(self):
+	def select_individuals(self, aggressive=False):
 
 		key, n = self.__criteria_of_change
-
-		if key == 'rand':
-			indexes = sample(range(0, 511), n)
-			self.__selected_to_change['indexes'] = indexes
-
-			for i in indexes:
-				self.__selected_to_change['indv'].append(self.__population[i])
 		
-		elif key == 'worst':
+		if aggressive:
+			n = int((self.__np * self.__obl_aggressive_rate)/100)
+			
+		self.__selected_to_change['indv']    = []
+		self.__selected_to_change['indexes'] = []
+
+		if key == 'worst':
 			
 			indexes = [i for i in range(self.__np)][-n:]
 			self.__selected_to_change['indexes'] = indexes
@@ -109,95 +112,111 @@ class DifferentialEvolution:
 			for i in indexes:
 				self.__selected_to_change['indv'].append(self.__population[i])
 
-			# self.__selected_to_change['indv']    = self.__population[-n:]
-			# self.__selected_to_change['indexes'] = [i for i in range(self.__np)][-n:]
+		
+		elif key == 'rand':
+
+			indexes = sample(range(0, 511), n)
+			self.__selected_to_change['indexes'] = indexes
+
+			for i in indexes:
+				self.__selected_to_change['indv'].append(self.__population[i])
 
 
-	def evolve(self, g):
+	def evolve(self):
 		
 		ti = time()
 
 		population = Population(np=self.__np)
 		self.__population = population.create()
-		
 
-		###########################
-		# Opposite-Based Learning #
-		###########################
+		opposite_positions = []
 
-		if g in self.__opposite_positions: 
-			
-			self.heap_sort()
+		if self.__obl:
 
-			# select individuals who will be used as opposite
-			self.select_individuals()
+			p = int((self.__ng * self.__obl_gen_rate)/100)
+			for i in range(1, self.__ng, p):
+				opposite_positions.append(i)
 
-			opposite_individuals = population.opposite(self.__selected_to_change['indv'])
+		for g in range(self.__ng):
 
-			for index, individual in zip(self.__selected_to_change['indexes'], opposite_individuals):
-				self.__population[index] = individual
+			###########################
+			# Opposite-Based Learning #
+			###########################
 
-			self.evaluate_new_population(op=True)
+			print('G: {}'.format(g))
 
+			if self.__obl  and  g in opposite_positions:	
 
-		###########################
-		else:
-	
-			self.heap_sort()
-			self.select_individuals()
+				with open("opposite_generations", "a") as f:
+					f.write(str(g)+"\n")
 
-			for index, individual in zip(self.__selected_to_change['indexes'], self.__selected_to_change['indv']):
+				self.heap_sort()
+
+				if self.__obl_aggressive and ((100*g)/self.__ng) > 50:
+					self.select_individuals(aggressive=True)
 				
-				############
-				# mutation #
-				############
+				# select individuals who will be used as opposite
+				self.select_individuals()
 
-				mutated_vector = self.mutate(index)
+				opposite_individuals = population.opposite(self.__selected_to_change['indv'])
+
+				for index, individual in zip(self.__selected_to_change['indexes'], opposite_individuals):
+					self.__population[index] = individual
+
+				self.evaluate_new_population()
+
+
+			
+			else:
+
+				###################################
+				# Differential Evolution Process #
+				###################################
+				
+				# print(array(self.__population))
+				
+				# l = []
+				# for i in self.__population:
+				# 	l.append(i.get_fit())
+				
+				# print(array(l))
+				# break
+
+				# self.heap_sort()
+				self.select_individuals()
+
+				for index, individual in zip(self.__selected_to_change['indexes'], self.__selected_to_change['indv']):
+					
+					############
+					# mutation #
+					############
+
+					mutated_vector = self.mutate(index)
+
+					#############
+					# crossover #
+					#############
+
+					new_individual = Individual()
+					new_individual.create()
+
+					u = self.crossover(individual, mutated_vector)
+					new_individual.set(array(u))
+
+					self.__aux_population.append(new_individual)
+					
 
 				#############
-				# crossover #
+				# selection #
 				#############
 
-				new_individual = Individual()
-				new_individual.create()
+				# replace individuals by new ones generated by DE in the original population
+				for index, individual in zip(self.__selected_to_change['indexes'], self.__aux_population):
+					self.__population[index] = individual
 
-				u = self.crossover(individual, mutated_vector)
-				new_individual.set(array(u))
-
-				self.__aux_population.append(new_individual)
+				self.evaluate_new_population()
 				
-				# self.__population_data[index] = u
-
-			#############
-			# selection #
-			#############
-
-			# temp = deepcopy(self.__population)
-
-			# replace individuals by new ones generated by DE in the original population
-			for index, individual in zip(self.__selected_to_change['indexes'], self.__aux_population):
-				self.__population[index] = individual
-
-			evaluation = self.evaluate_new_population()
-			
-
-			# if self.__previous_fit > evaluation:
 				
-			# 	for index in zip(self.__selected_to_change['indexes']):
-			# 		self.__population[index] = temp[index]
-
-			# 	population_data = []
-			# 	for individual in self.__population:
-			# 		population_data.append(individual.get())
-
-			# 	os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/pair_stats.bak")
-			# 	os.system("cp store.tmp store.bak")
-			# 	savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), population_data, delimiter=' ', fmt='%s')
-				
-			# 	os.system("./tools/generate_eval.sh ")
-			
-
-			# del(temp)
 
 		tf = time()	  
 		self.__total_time =  tf - ti
@@ -228,10 +247,8 @@ class DifferentialEvolution:
 
 	def get_best(self):
 
+		self.heap_sort()
 		best = self.__population[0]
-		# for indv in self.__population:
-		#     if indv.get_fit() < best.get_fit():
-		#         best = indv
 
 		return best
 	
@@ -410,28 +427,26 @@ class DifferentialEvolution:
 		return v
 
 
-
 if __name__ == '__main__':
+	
 
-	g = int(argv[1])
-
-	ng = 1500
+	ng = 100
 	p = int((ng * 5)/100)
-
-	opposite_positions = []
-	for i in range(1, ng, p):
-		opposite_positions.append(i)
 			
-	change_criteria = ['worst', 20]
+	change_criteria = ['worst', 10]
 	
 	de = DifferentialEvolution(
 		np=512,
 		cr=0.8, 
 		f=0.7, 
+		ng=ng,
 		algorithm='rand_1_bin',
 		change=change_criteria,
-		opposite_positions=opposite_positions
+		obl=False,
+		obl_gen_rate=0,
+		obl_aggressive=False,
+		obl_aggressive_rate=0
 	)
 
-	de.evolve(g=g)	
+	de.evolve()	
 	

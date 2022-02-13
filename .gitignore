@@ -5,3 +5,5 @@ teste*
 GRIEF-datasets/
 .vscode/
 experimentos/*
+*ipynb
+*.ipynb_checkpoints
