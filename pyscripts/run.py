@@ -5,8 +5,8 @@ import os
 
 experiments_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'experiments'   ))
 grief_path 		 = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'grief_history' )) 
-algorithms 		 = ['rand_1_bin', 'rand_to_best_1_bin']
-# algorithms 		 = ['best_1_bin']
+# algorithms 		 = ['rand_1_bin', 'rand_to_best_1_bin']
+algorithms 		 = ['best_1_bin']
 configs = ConfigParser()
 
 ng = 1500

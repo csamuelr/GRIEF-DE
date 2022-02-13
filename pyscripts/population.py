@@ -40,7 +40,7 @@ class Individual:
 		self.__fit = f
 
 	def __lt__(self, other):
-		return self.get_fit() > other.get_fit()
+		return self.get_fit() < other.get_fit()
 
 	def __gt__(self, other):
 		return other.__lt__(self)
