@@ -201,8 +201,9 @@ class DifferentialEvolution:
 					self.__population[index] = individual
 
 				self.evaluate_new_population()
-				
-				
+			
+			fitness = os.popen("cat store.tmp|cut -f 3 -d ' '").read()
+			os.system("cp tools/grief/pair_stats.txt grief_history/"+ str(g).zfill(5) + "_"+ str(fitness) + ".txt")		
 		tf = time()	  
 		self.__total_time =  tf - ti
 

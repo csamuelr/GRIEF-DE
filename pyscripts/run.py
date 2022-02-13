@@ -9,7 +9,7 @@ algorithms 		 = ['rand_1_bin', 'rand_to_best_1_bin']
 # algorithms 		 = ['best_1_bin']
 configs = ConfigParser()
 
-ng = 1500
+ng = 3
 
 for algorithm in algorithms:
 
@@ -27,7 +27,7 @@ for algorithm in algorithms:
 		exp_path = os.path.join(path, experiment)
 		os.mkdir(exp_path)
 
-		for i in range(30):
+		for i in range(10):
 			print("{} - execution number: {}".format(experiment, i+1))
 
 			os.system('./scripts/resetGrief.sh >> /dev/null')
@@ -72,6 +72,9 @@ for algorithm in algorithms:
 			os.system(cmd)
 			
 			cmd = "rm opposite_generations && touch opposite_generations" 
+			os.system(cmd)
+
+			cmd = "rm -rf grief_history/*" 
 			os.system(cmd)
 			
 
