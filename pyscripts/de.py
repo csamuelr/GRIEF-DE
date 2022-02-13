@@ -142,8 +142,6 @@ class DifferentialEvolution:
 			# Opposite-Based Learning #
 			###########################
 
-			print('G: {}'.format(g))
-
 			if self.__obl  and  g in opposite_positions:	
 
 				with open("opposite_generations", "a") as f:
@@ -163,7 +161,6 @@ class DifferentialEvolution:
 					self.__population[index] = individual
 
 				self.evaluate_new_population()
-
 
 			
 			else:
@@ -206,7 +203,6 @@ class DifferentialEvolution:
 				self.evaluate_new_population()
 				
 				
-
 		tf = time()	  
 		self.__total_time =  tf - ti
 

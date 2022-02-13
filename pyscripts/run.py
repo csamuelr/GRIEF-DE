@@ -6,7 +6,8 @@ import os
 
 experiments_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'experiments'   ))
 grief_path 		 = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'grief_history' )) 
-algorithms 		 = ['rand_1_bin', 'rand_to_best_1_bin']
+# algorithms 		 = ['rand_1_bin', 'rand_to_best_1_bin']
+algorithms 		 = ['best_1_bin']
 configs = ConfigParser()
 
 ng = 1500
@@ -31,7 +32,7 @@ for algorithm in algorithms:
 			print("{} - execution number: {}".format(experiment, i+1))
 
 			os.system('./scripts/resetGrief.sh >> /dev/null')
-			os.system('./tools/generate_eval.sh >> /dev/null')
+			# os.system('./tools/generate_eval.sh >> /dev/null')
 			os.system('./tools/evaluate GRIEF-datasets/planetarium >> /dev/null')
 		
 			execution_path = os.path.join(path, experiment, str(i+1))
