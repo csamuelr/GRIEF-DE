@@ -125,29 +125,30 @@ class DifferentialEvolution:
 		
 		ti = time()
 
-		population = Population(np=self.__np)
-		self.__population = population.create()
-
 		opposite_positions = []
-
-		if self.__obl:
-
-			p = int((self.__ng * self.__obl_gen_rate)/100)
-			for i in range(1, self.__ng, p):
-				opposite_positions.append(i)
+		
 
 		for g in range(self.__ng):
+			population = Population(np=self.__np)
+			self.__population = population.create()
 
+			if g==1:
+				if self.__obl:
+					p = int((self.__ng * self.__obl_gen_rate)/100)
+					for i in range(1, self.__ng, p):
+						opposite_positions.append(i)
+						
 			###########################
 			# Opposite-Based Learning #
 			###########################
+			self.heap_sort()
 
 			if self.__obl  and  g in opposite_positions:	
 
 				with open("opposite_generations", "a") as f:
 					f.write(str(g)+"\n")
 
-				self.heap_sort()
+				
 
 				if self.__obl_aggressive and ((100*g)/self.__ng) > 50:
 					self.select_individuals(aggressive=True)
@@ -294,7 +295,7 @@ class DifferentialEvolution:
 		return v
 
 
-	def randtobest_1_bin(self, i):
+	def rand_to_best_1_bin(self, i):
 		
 		''' Vi,G = Vr1,G + F (Vbest,G – Vr1,G + Vr2,G – Vr3,G) '''
 
