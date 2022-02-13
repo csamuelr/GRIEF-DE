@@ -46,8 +46,7 @@ class DifferentialEvolution:
 	def heap_sort(self):
 
 		heap = []
-		for i, individual in enumerate(self.__population):
-			print(i, individual.get_fit())
+		for individual in self.__population:
 			heappush(heap, individual)
 
 		ordered = []
@@ -172,17 +171,7 @@ class DifferentialEvolution:
 				###################################
 				# Differential Evolution Process #
 				###################################
-				
-				# print(array(self.__population))
-				
-				# l = []
-				# for i in self.__population:
-				# 	l.append(i.get_fit())
-				
-				# print(array(l))
-				# break
-
-				# self.heap_sort()
+								
 				self.select_individuals()
 
 				for index, individual in zip(self.__selected_to_change['indexes'], self.__selected_to_change['indv']):
