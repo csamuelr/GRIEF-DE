@@ -68,8 +68,9 @@ for algorithm in algorithms:
 			cmd = 'cp grief_history -r ' + os.path.join(execution_path, 'history')
 			os.system(cmd)
 
-			cmd = 'cp opposite_generations ' + os.path.join(execution_path, 'opposite_generations')
-			os.system(cmd)
+			if(obl):
+				cmd = 'cp opposite_generations ' + os.path.join(execution_path, 'opposite_generations')
+				os.system(cmd)
 			
 			cmd = "rm opposite_generations && touch opposite_generations" 
 			os.system(cmd)
