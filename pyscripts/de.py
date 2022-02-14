@@ -78,14 +78,14 @@ class DifferentialEvolution:
 		for individual in self.__population:
 			population_data.append(individual.get())
 
-		# os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/pair_stats.bak")
-		# os.system("cp store.tmp store.bak")
+		os.system("cp ./tools/grief/pair_stats.txt ./tools/grief/pair_stats.bak")
+		os.system("cp store.tmp store.bak")
 		savetxt(os.path.join(os.getcwd(), 'tools', 'grief', 'test_pairs.txt'), population_data, delimiter=' ', fmt='%s')
 		
 		os.system("./tools/generate_eval.sh ")
 
 		#Função de avaliação
-		cmd = "./tools/evaluate GRIEF-datasets/planetarium| grep fitness > store.tmp"
+		cmd = "./tools/evaluate GRIEF-datasets/planetarium | grep fitness > store.tmp"
 		os.system(cmd)
 
 		if op:
@@ -203,7 +203,10 @@ class DifferentialEvolution:
 				self.evaluate_new_population()
 			
 			fitness = os.popen("cat store.tmp|cut -f 3 -d ' '").read()
-			os.system("cp tools/grief/pair_stats.txt grief_history/"+ str(g).zfill(5) + "_"+ str(fitness) + ".txt")		
+
+			cmd = "cp tools/grief/pair_stats.txt grief_history/"+ str(g).zfill(5) + "_" + str(fitness) + ".txt"
+			os.system(cmd)
+
 		tf = time()	  
 		self.__total_time =  tf - ti
 
