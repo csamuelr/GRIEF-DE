@@ -131,45 +131,45 @@ class DifferentialEvolution:
 		
 
 		for g in range(self.__ng):
-			self.__aux_population 	   = []
+
+			self.__aux_population = []
 			population = Population(np=self.__np)
 			self.__population = population.create()
+
 			for i, individual in enumerate(self.__population):
 				aux_ind = list(individual.get())
 				aux_ind.append(individual.get_fit())
 				self.__population_data[i] = array(aux_ind)
 			
-			if g==0:
+			if g == 0:
 				
-
 				if self.__obl:
 					p = int((self.__ng * self.__obl_gen_rate)/100)
 					for i in range(1, self.__ng, p):
 						opposite_positions.append(i)
 
-			
-			self.__selected_to_change['indexes'] = argsort(self.__population_data[:,4])[:self.__criteria_of_change[1]]
-			self.__selected_to_change['indv'] = []
-			for idx in self.__selected_to_change['indexes']:
-				self.__selected_to_change['indv'].append(self.__population[idx])
-			
 			###########################
 			# Opposite-Based Learning #
 			###########################
 
-			if self.__obl  and  g in opposite_positions:	
+			if self.__obl  and  g in opposite_positions:
 
-				with open("opposite_generations", "a") as f:
-					f.write(str(g)+"\n")
+				if self.__obl_aggressive and ((100*g)/self.__ng) > 50:
+					n = int((self.__np * self.__obl_aggressive_rate)/100)
+					self.__selected_to_change['indexes'] = argsort(self.__population_data[:,4])[:n]
+					self.__selected_to_change['indv'] = []
 
+					self.__selected_to_change['indexes'] = argsort(self.__population_data[:,4])[:self.__criteria_of_change[1]]
+					self.__selected_to_change['indv'] = []
+
+					for idx in self.__selected_to_change['indexes']:
+						self.__selected_to_change['indv'].append(self.__population[idx])
+				
 				
 
-				#if self.__obl_aggressive and ((100*g)/self.__ng) > 50:
-				#	self.select_individuals(aggressive=True)
-				#
-				## select individuals who will be used as opposite
-				#self.select_individuals()
-
+				with open("opposite_generations", "a") as f:
+					f.write(str(g)+"\n")	
+				
 				opposite_individuals = population.opposite(self.__selected_to_change['indv'])
 
 				for index, individual in zip(self.__selected_to_change['indexes'], opposite_individuals):
@@ -185,7 +185,11 @@ class DifferentialEvolution:
 				# Differential Evolution Process #
 				###################################
 								
-				#self.select_individuals()
+				self.__selected_to_change['indexes'] = argsort(self.__population_data[:,4])[:self.__criteria_of_change[1]]
+				self.__selected_to_change['indv'] = []
+
+				for idx in self.__selected_to_change['indexes']:
+					self.__selected_to_change['indv'].append(self.__population[idx])
 				
 				for index, individual in zip(self.__selected_to_change['indexes'], self.__selected_to_change['indv']):
 					
@@ -220,9 +224,9 @@ class DifferentialEvolution:
 				self.evaluate_new_population()
 			
 			fitness = os.popen("cat store.tmp|cut -f 3 -d ' '").read()
-			print(int(fitness))
 			#print("grief_history/"+ str(g).zfill(5) + "_"+ str(int(fitness)) + ".txt")
 			os.system("cp tools/grief/pair_stats.txt grief_history/"+ str(g + 1).zfill(5) + "_"+ str(int(fitness)) + ".txt")		
+	
 		tf = time()	  
 		self.__total_time =  tf - ti
 
@@ -311,7 +315,7 @@ class DifferentialEvolution:
 		return v
 
 
-	def rand_to_best_1_bin(self, i):
+	def randtobest_1_bin(self, i):
 		
 		''' Vi,G = Vr1,G + F (Vbest,G – Vr1,G + Vr2,G – Vr3,G) '''
 
