@@ -86,7 +86,7 @@
 ((SMOOTHED(9, -23) < SMOOTHED(8, -24)) << 0)
 ;
     desc[5] =
-((SMOOTHED(2, -3) < SMOOTHED(6, -9)) << 7)
+((SMOOTHED(-3, 0) < SMOOTHED(13, 0)) << 7)
 +
 ((SMOOTHED(-5, 6) < SMOOTHED(-7, 4)) << 6)
 +
@@ -226,7 +226,7 @@
 +
 ((SMOOTHED(-4, -20) < SMOOTHED(-2, -17)) << 6)
 +
-((SMOOTHED(13, -4) < SMOOTHED(4, -1)) << 5)
+((SMOOTHED(13, -6) < SMOOTHED(-3, -4)) << 5)
 +
 ((SMOOTHED(-6, -17) < SMOOTHED(-5, -16)) << 4)
 +

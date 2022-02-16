@@ -4,16 +4,16 @@ from numpy.random import exponential
 from population   import Individual
 from population   import Population
 from numpy        import array
-from numpy		  import zeros
+from numpy        import zeros
 from numpy        import loadtxt
 from numpy        import savetxt
-from numpy 		  import argsort
+from numpy        import argsort
 from heapq        import heappop
 from heapq        import heappush
 from time         import time
 from sys          import exit
-from copy 		  import deepcopy
-from random		  import sample
+from copy         import deepcopy
+from random       import sample
 
 import os
 
