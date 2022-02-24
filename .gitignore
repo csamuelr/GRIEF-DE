@@ -4,6 +4,7 @@ grief_history/
 teste*
 GRIEF-datasets/
 .vscode/
-experimentos/*
-*ipynb
+experiments/
+view_results.ipynb
 *.ipynb_checkpoints
+*.zip

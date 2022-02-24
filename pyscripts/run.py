@@ -5,11 +5,12 @@ import os
 
 experiments_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'experiments'   ))
 grief_path 		 = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'grief_history' )) 
-algorithms 		 = ['rand_1_bin', 'randtobest_1_bin']
-algorithms 		 = ['best_1_bin']
+# algorithms 		 = ['rand_1_bin', 'randtobest_1_bin']
+algorithms 		 = ['rand_1_bin']
+# algorithms 		 = ['sensitivity_analysis']
 configs = ConfigParser()
 
-ng = 1500
+ng = 700
 
 for algorithm in algorithms:
 
@@ -27,7 +28,7 @@ for algorithm in algorithms:
 		exp_path = os.path.join(path, experiment)
 		os.mkdir(exp_path)
 
-		for i in range(30):
+		for i in range(3):
 			print("{} - execution number: {}".format(experiment, i+1))
 
 			os.system('./scripts/resetGrief.sh >> /dev/null')
