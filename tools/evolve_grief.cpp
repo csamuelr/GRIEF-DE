@@ -90,30 +90,30 @@ void generateNew()
 
 	// exchange 10 comparisons by 10 random ones
 
-	// for (int i = griefDescriptorLength-numExchange;i<griefDescriptorLength;i++){
-	// 	int id = griefRating[i].id;
-	// 	x1[id] = rand()%xWindow-xWindow/2;
-	// 	y1[id] = rand()%yWindow-yWindow/2;
-	// 	x2[id] = rand()%xWindow-xWindow/2;
-	// 	y2[id] = rand()%yWindow-yWindow/2;
-	// }
+	for (int i = griefDescriptorLength-numExchange;i<griefDescriptorLength;i++){
+		int id = griefRating[i].id;
+		x1[id] = rand()%xWindow-xWindow/2;
+		y1[id] = rand()%yWindow-yWindow/2;
+		x2[id] = rand()%xWindow-xWindow/2;
+		y2[id] = rand()%yWindow-yWindow/2;
+	}
 
-	// file = fopen("/home/samuel/Dev/Python/GRIEF-DE/tools/grief/test_pairs.txt","w");
-	// for (int i = 0;i<512;i++){
-	// 	fprintf(file,"%i %i %i %i\n",x1[i],y1[i],x2[i],y2[i]);
-	// }
+	file = fopen( (CURRENT_DIR + "/tools/grief/test_pairs.txt").c_str(),"w");
+	for (int i = 0;i<512;i++){
+		fprintf(file,"%i %i %i %i\n",x1[i],y1[i],x2[i],y2[i]);
+	}
 
-	// //printf("%i %i %.3f\n",matchingFailures,matchingTests,(float)matchingFailures/matchingTests); 
-	// printf("Population fitness: %i %.3f\n",sum,(float)matchingFailures/matchingTests*100.0);
-	// fclose(file);
+	//printf("%i %i %.3f\n",matchingFailures,matchingTests,(float)matchingFailures/matchingTests); 
+	printf("Population fitness: %i %.3f\n",sum,(float)matchingFailures/matchingTests*100.0);
+	fclose(file);
 	
-    string command;
-    command = "/usr/bin/python3 " + CURRENT_DIR + "/pyscripts/de.py";
+    // string command;
+    // command = "/usr/bin/python3 " + CURRENT_DIR + "/pyscripts/de.py";
 
-	char arrcommand [command.length() + 1];
+	// char arrcommand [command.length() + 1];
 
-	strcpy(arrcommand, command.c_str());
-	system(arrcommand);
+	// strcpy(arrcommand, command.c_str());
+	// system(arrcommand);
 
 	printf("Population fitness: %i %.3f\n",sum,(float)matchingFailures/matchingTests*100.0);
 
